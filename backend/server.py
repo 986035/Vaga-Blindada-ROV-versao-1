@@ -51,167 +51,138 @@ class CourseInfo(BaseModel):
     offers: List[dict]
     testimonials: List[dict]
 
-# Course data with complete offers and benefits
+# ORIGINAL Course data from course_data.py - RESTORED VERSION
 course_data = {
     "product": {
         "name": "VAGA BLINDADA ROV",
-        "subtitle": "Curso Completo de Operador ROV com Garantia de Emprego",
-        "price": 297.00,
-        "old_price": 597.00,
-        "currency": "BRL"
+        "subtitle": "Tudo o que você precisa para proteger sua vaga dos concorrentes. O guia completo para conquistar uma vaga de trainee de ROV no mercado offshore.",
+        "price": "R$ 297,00",
+        "oldPrice": "R$ 497,00"
     },
+    
     "hero": {
-        "announcement": "🚨 ÚLTIMAS VAGAS DISPONÍVEIS - GARANTA JÁ A SUA!",
+        "announcement": "Vagas Limitadas • Acesso Prioritário",
         "title": "VAGA BLINDADA ROV",
-        "subtitle": "Torne-se um Operador ROV Certificado e Garanta sua Vaga no Mercado Offshore",
-        "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        "subtitle": "Tudo o que você precisa para proteger sua vaga dos concorrentes. O guia completo para conquistar uma vaga de trainee de ROV no mercado offshore.",
+        "videoText": "▶ Assista ao vídeo de apresentação",
+        "ctaPrimary": "Garantir Minha Vaga",
+        "ctaSecondary": "Conhecer o Método"
     },
+    
     "stats": [
-        {"number": "95%", "label": "Taxa de Empregabilidade"},
-        {"number": "R$ 15k", "label": "Salário Médio Inicial"},
-        {"number": "500+", "label": "Alunos Certificados"},
-        {"number": "24h", "label": "Suporte Direto"}
+        {"number": "15+", "label": "Anos de Experiência"},
+        {"number": "10", "label": "Aulas Completas"},
+        {"number": "100%", "label": "Método Prático"}
     ],
+    
     "benefits": [
         {
-            "title": "🎯 Certificação Internacional",
-            "description": "Certificado reconhecido mundialmente pela indústria offshore"
+            "title": "Mercado Offshore e ROV",
+            "description": "Como funciona o mercado offshore e onde o ROV atua. Entenda as oportunidades reais do setor."
         },
         {
-            "title": "💼 Garantia de Emprego",
-            "description": "Programa exclusivo de colocação no mercado de trabalho"
+            "title": "Habilidades Valorizadas", 
+            "description": "Quais habilidades as empresas realmente valorizam nos candidatos a trainee ROV."
         },
         {
-            "title": "🌊 Treinamento Prático",
-            "description": "Simuladores reais de ROV usados na indústria"
+            "title": "Sistemas e Ferramentas",
+            "description": "Os principais sensores, ferramentas e sistemas usados no ROV que você precisa conhecer."
         },
         {
-            "title": "📱 Acesso Vitalício",
-            "description": "Curso disponível para sempre + atualizações gratuitas"
+            "title": "Currículo Profissional",
+            "description": "Como montar um currículo profissional mesmo sendo iniciante, destacando seus pontos fortes."
         },
         {
-            "title": "👨‍🏫 Mentoria Individual",
-            "description": "Acompanhamento personalizado durante todo o curso"
+            "title": "Entrevistas e Seleções",
+            "description": "Dicas práticas para entrevistas e processos seletivos das principais empresas offshore."
         },
         {
-            "title": "🌐 Network Exclusivo",
-            "description": "Acesso à comunidade de profissionais ROV no Brasil"
+            "title": "Vantagem Competitiva",
+            "description": "O principal: como proteger a SUA vaga dos concorrentes e se destacar no mercado."
         }
     ],
+    
     "course_content": [
         {
-            "icon": "🤖",
-            "title": "Fundamentos de ROV",
-            "description": "História, tipos, componentes e aplicações industriais"
+            "title": "10 Aulas em Vídeo",
+            "description": "Organizadas passo a passo para seu aprendizado progressivo"
         },
         {
-            "icon": "⚙️",
-            "title": "Sistemas e Componentes",
-            "description": "Thrusters, câmeras, manipuladores e sensores"
+            "title": "Apostilas e Slides", 
+            "description": "Materiais complementares para reforçar o aprendizado"
         },
         {
-            "icon": "🕹️",
-            "title": "Operação e Pilotagem",
-            "description": "Técnicas avançadas de controle e navegação"
+            "title": "Modelo de Currículo",
+            "description": "Pronto para edição, otimizado para o mercado offshore"
         },
         {
-            "icon": "🔧",
-            "title": "Manutenção Preventiva",
-            "description": "Inspeção, diagnóstico e reparo de equipamentos"
+            "title": "Checklists de Preparação",
+            "description": "Para você não esquecer nenhum detalhe importante"
         },
         {
-            "icon": "📋",
-            "title": "Segurança Offshore",
-            "description": "Protocolos de segurança e procedimentos emergenciais"
+            "title": "Certificado de Conclusão",
+            "description": "10 horas de certificação para seu currículo"
         },
         {
-            "icon": "📜",
-            "title": "Certificação Final",
-            "description": "Prova prática + teórica para certificação internacional"
+            "title": "Acesso ao Instrutor",
+            "description": "Canal direto no Telegram para tirar dúvidas"
         }
     ],
+    
     "bonuses": [
         {
-            "icon": "📚",
-            "title": "E-book: Manual Completo ROV",
-            "description": "Guia definitivo com 200+ páginas sobre ROV (Valor: R$ 97)"
+            "title": "Canal de Vagas Reais",
+            "description": "Canal fechado com alertas de vagas reais do mercado offshore"
         },
         {
-            "icon": "🎥",
-            "title": "Masterclass: Mercado Offshore",
-            "description": "Como conseguir sua primeira vaga offshore (Valor: R$ 197)"
+            "title": "Lista de Empresas",
+            "description": "Lista completa de empresas que contratam profissionais de ROV"
         },
         {
-            "icon": "💻",
-            "title": "Software de Simulação",
-            "description": "Acesso ao simulador ROV profissional por 1 ano (Valor: R$ 397)"
+            "title": "Cronograma de Estudos",
+            "description": "Para te manter no foco e organizar seu tempo de estudo"
         },
         {
-            "icon": "🤝",
-            "title": "Consultoria de Carreira",
-            "description": "1h de consultoria individual para alavancar sua carreira (Valor: R$ 297)"
-        },
-        {
-            "icon": "📱",
-            "title": "App Mobile Exclusivo",
-            "description": "Aplicativo com conteúdo offline e exercícios práticos (Valor: R$ 97)"
+            "title": "Atualizações Gratuitas",
+            "description": "Sempre que o curso for ampliado, você recebe as atualizações"
         }
     ],
-    "offers": [
-        {
-            "title": "🎁 OFERTA ESPECIAL - APENAS HOJE!",
-            "subtitle": "De R$ 597 por apenas R$ 297",
-            "highlight": "ECONOMIA DE R$ 300",
-            "urgency": "Oferta válida apenas para as próximas 24 horas",
-            "included": [
-                "✅ Curso Completo VAGA BLINDADA ROV",
-                "✅ Certificação Internacional",
-                "✅ Todos os 5 Bônus (Valor R$ 1.085)",
-                "✅ Garantia de Emprego",
-                "✅ Suporte 24h por 6 meses",
-                "✅ Acesso Vitalício",
-                "✅ Garantia de 30 dias"
-            ]
-        },
-        {
-            "title": "🔥 ÚLTIMO DIA DA PROMOÇÃO",
-            "subtitle": "Não perca esta oportunidade única!",
-            "highlight": "ÚLTIMAS 12 VAGAS",
-            "urgency": "Após esgotar as vagas, preço volta para R$ 597",
-            "benefits": [
-                "💰 Economia imediata de R$ 300",
-                "🚀 Entrada no mercado mais rápida",
-                "📈 ROI em menos de 30 dias",
-                "🎯 Vaga garantida ou seu dinheiro de volta"
-            ]
-        }
-    ],
+    
     "instructor": {
-        "name": "Eng. Carlos Marinho",
-        "bio": "Especialista em ROV com mais de 15 anos de experiência offshore",
-        "experience": "Ex-Petrobras • Instrutor Certificado • 1000+ ROVs operados",
+        "name": "Leandro Pinheiro",
+        "bio": "Técnico mecatrônico com mais de 15 anos de experiência no setor offshore, especializado em sistemas de ROV.",
+        "experience": "Começou como técnico de ferramentas, evoluiu para piloto e hoje é referência em treinamento de novos profissionais.",
         "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300"
     },
-    "testimonials": [
-        {
-            "name": "João Silva",
-            "role": "Operador ROV - Oceaneering",
-            "text": "Em 2 meses já estava empregado offshore ganhando R$ 18k. O curso é completo demais!",
-            "rating": 5
+    
+    "sections": {
+        "benefits": {
+            "title": "O que você vai aprender",
+            "subtitle": "Conteúdo completo e prático para se destacar no mercado offshore"
         },
-        {
-            "name": "Maria Santos",
-            "role": "ROV Pilot - Subsea 7",
-            "text": "A certificação abriu portas que eu nem imaginava. Hoje trabalho em projetos internacionais.",
-            "rating": 5
+        "target": {
+            "title": "Para quem é esse curso?",
+            "cardTitle": "Técnicos de Todas as Áreas",
+            "cardDescription": "Elétrica, Mecânica, Automação, Mecatrônica e áreas correlatas"
         },
-        {
-            "name": "Pedro Costa",
-            "role": "Senior ROV Tech - TechnipFMC",
-            "text": "Carlos é referência no mercado. O conteúdo é atual e extremamente prático.",
-            "rating": 5
+        "content": {
+            "title": "O que você recebe ao se inscrever",
+            "subtitle": "Conteúdo completo para sua preparação"
+        },
+        "bonus": {
+            "badge": "BÔNUS EXCLUSIVOS", 
+            "title": "Vantagens adicionais para os primeiros inscritos"
+        },
+        "instructor": {
+            "title": "Sobre o Instrutor"
+        },
+        "cta": {
+            "title": "Não deixe sua oportunidade escapar",
+            "subtitle": "Os primeiros inscritos terão acompanhamento especial e acesso prioritário às atualizações do curso.",
+            "urgency": "Vagas limitadas para o grupo com acesso direto ao instrutor",
+            "button": "Garantir Minha Vaga Agora"
         }
-    ]
+    }
 }
 
 # Routes
