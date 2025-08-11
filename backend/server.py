@@ -240,6 +240,10 @@ async def capture_lead(lead: LeadCreate):
 async def get_leads():
     try:
         leads = await db.leads.find().to_list(100)
+        # Convert ObjectId to string for JSON serialization
+        for lead in leads:
+            if "_id" in lead:
+                lead["_id"] = str(lead["_id"])
         return leads
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao buscar leads: {str(e)}")
