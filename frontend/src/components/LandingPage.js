@@ -38,8 +38,7 @@ const LandingPage = () => {
 
   const handleWatchVideo = () => {
     trackEvent('video_play_attempt', 'hero');
-    console.log("Play introduction video");
-    // Will be replaced with actual video player
+    setIsVideoPlaying(true);
   };
 
   // Show loading spinner while fetching data
