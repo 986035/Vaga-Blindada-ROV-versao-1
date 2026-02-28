@@ -10,6 +10,7 @@ import LoadingSpinner from "./LoadingSpinner";
 
 const LandingPage = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const { courseData, isLoading, error } = useCourseInfo();
   const { createCheckoutSession, isProcessing } = useCheckout();
   const { trackEvent } = useAnalytics();
