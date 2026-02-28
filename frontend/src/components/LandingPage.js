@@ -85,16 +85,34 @@ const LandingPage = () => {
 
             {/* Video Section */}
             <div className="hero-video-container">
-              <div className="video-placeholder" onClick={handleWatchVideo}>
-                <div className="video-play-button">
-                  <PlayCircle size={64} />
+              {!isVideoPlaying ? (
+                <div className="video-placeholder" onClick={handleWatchVideo}>
+                  <img 
+                    src="https://img.youtube.com/vi/t2WO4HhINIE/maxresdefault.jpg" 
+                    alt="Vídeo de apresentação do curso Vaga Blindada ROV"
+                    className="video-thumbnail"
+                  />
+                  <div className="video-play-button">
+                    <PlayCircle size={80} />
+                  </div>
+                  <div className="video-overlay">
+                    <span className="video-text">
+                      {data.hero?.videoText || "▶ Assista ao vídeo de apresentação"}
+                    </span>
+                  </div>
                 </div>
-                <div className="video-overlay">
-                  <span className="video-text">
-                    {data.hero?.videoText || "▶ Assista ao vídeo de apresentação"}
-                  </span>
+              ) : (
+                <div className="video-player-wrapper">
+                  <iframe
+                    src="https://www.youtube.com/embed/t2WO4HhINIE?autoplay=1&rel=0"
+                    title="Vaga Blindada ROV - Apresentação"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="video-iframe"
+                  ></iframe>
                 </div>
-              </div>
+              )}
             </div>
             
             {/* Important Information Box - Below Video */}
