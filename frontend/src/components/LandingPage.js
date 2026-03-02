@@ -148,24 +148,34 @@ const LandingPage = () => {
                 {testimonials.map((testimonial) => (
                   <div key={testimonial.id} className="testimonial-card">
                     <div className="testimonial-video-container">
-                      {playingTestimonial === testimonial.id ? (
-                        <video
-                          className="testimonial-video"
-                          controls
-                          autoPlay
-                          src={testimonial.videoUrl}
-                        >
-                          Seu navegador não suporta vídeos.
-                        </video>
-                      ) : (
+                      <video
+                        className="testimonial-video"
+                        controls={playingTestimonial === testimonial.id}
+                        muted={playingTestimonial !== testimonial.id}
+                        playsInline
+                        preload="metadata"
+                        src={testimonial.videoUrl + "#t=0.5"}
+                        onClick={(e) => {
+                          if (playingTestimonial !== testimonial.id) {
+                            e.preventDefault();
+                            setPlayingTestimonial(testimonial.id);
+                            e.target.muted = false;
+                            e.target.play();
+                          }
+                        }}
+                      >
+                        Seu navegador não suporta vídeos.
+                      </video>
+                      {playingTestimonial !== testimonial.id && (
                         <div 
-                          className="testimonial-video-placeholder"
-                          onClick={() => setPlayingTestimonial(testimonial.id)}
+                          className="testimonial-play-overlay"
+                          onClick={() => {
+                            setPlayingTestimonial(testimonial.id);
+                          }}
                         >
                           <div className="testimonial-play-button">
                             <PlayCircle size={48} />
                           </div>
-                          <span className="testimonial-play-text">Assistir depoimento</span>
                         </div>
                       )}
                     </div>
