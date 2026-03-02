@@ -664,25 +664,11 @@ body {
 
 .testimonial-play-button {
   color: white;
-  background: rgba(52, 152, 219, 0.8);
+  background: rgba(52, 152, 219, 0.9);
   border-radius: 50%;
   padding: 0.5rem;
   transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
-}
-
-.testimonial-video-placeholder:hover .testimonial-play-button {
-  transform: scale(1.1);
-  background: rgba(52, 152, 219, 1);
-}
-
-.testimonial-play-text {
-  color: white;
-  font-size: 0.75rem;
-  margin-top: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 500;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
 }
 
 .testimonial-info {
