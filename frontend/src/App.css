@@ -871,6 +871,18 @@ body {
 
 /* MailerLite Responsive */
 @media (max-width: 768px) {
+  .mailerlite-authority {
+    padding: 0 0.5rem;
+  }
+  
+  .authority-line-1 {
+    font-size: 1.1rem;
+  }
+  
+  .authority-line-2 {
+    font-size: 0.95rem;
+  }
+  
   .mailerlite-container {
     padding: 1.5rem;
   }
