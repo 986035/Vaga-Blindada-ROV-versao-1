@@ -38,6 +38,9 @@ const LandingPage = () => {
   const { createCheckoutSession, isProcessing } = useCheckout();
   const { trackEvent } = useAnalytics();
 
+  // Link do Telegram para lista de espera
+  const telegramLink = "https://t.me/+UoeYC9QlR9I2MGM5";
+
   useEffect(() => {
     setIsVisible(true);
     // Track page view
@@ -46,11 +49,13 @@ const LandingPage = () => {
 
   const handlePurchase = async (source = 'hero') => {
     try {
-      await trackEvent('cta_click', source, { button: 'purchase' });
-      await createCheckoutSession();
+      await trackEvent('cta_click', source, { button: 'telegram_waitlist' });
+      // Redireciona para o Telegram
+      window.open(telegramLink, '_blank');
     } catch (error) {
-      console.error('Purchase error:', error);
-      // You could show a toast notification here
+      console.error('Error:', error);
+      // Abre o Telegram mesmo se o tracking falhar
+      window.open(telegramLink, '_blank');
     }
   };
 
