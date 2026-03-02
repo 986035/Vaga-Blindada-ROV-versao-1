@@ -137,6 +137,46 @@ const LandingPage = () => {
                 </div>
               )}
             </div>
+
+            {/* Testimonials Section */}
+            <div className="testimonials-section">
+              <h3 className="testimonials-title">
+                <Star size={24} className="text-yellow-400" />
+                Veja quem já conquistou sua vaga
+              </h3>
+              <div className="testimonials-grid">
+                {testimonials.map((testimonial) => (
+                  <div key={testimonial.id} className="testimonial-card">
+                    <div className="testimonial-video-container">
+                      {playingTestimonial === testimonial.id ? (
+                        <video
+                          className="testimonial-video"
+                          controls
+                          autoPlay
+                          src={testimonial.videoUrl}
+                        >
+                          Seu navegador não suporta vídeos.
+                        </video>
+                      ) : (
+                        <div 
+                          className="testimonial-video-placeholder"
+                          onClick={() => setPlayingTestimonial(testimonial.id)}
+                        >
+                          <div className="testimonial-play-button">
+                            <PlayCircle size={48} />
+                          </div>
+                          <span className="testimonial-play-text">Assistir depoimento</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="testimonial-info">
+                      <h4 className="testimonial-name">{testimonial.name}</h4>
+                      <p className="testimonial-role">{testimonial.role}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
             
             {/* Important Information Box - Below Video */}
             <div className="info-box-container">
