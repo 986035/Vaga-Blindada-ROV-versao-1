@@ -11,7 +11,30 @@ import LoadingSpinner from "./LoadingSpinner";
 const LandingPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [playingTestimonial, setPlayingTestimonial] = useState(null);
   const { courseData, isLoading, error } = useCourseInfo();
+  
+  // Dados dos depoimentos
+  const testimonials = [
+    {
+      id: 1,
+      name: "Carlos Miranda",
+      role: "Aprovado como Trainee na Oceaneering",
+      videoUrl: "https://customer-assets.emergentagent.com/job_br-domain-config/artifacts/bli1zgma_IMG_6137.mp4"
+    },
+    {
+      id: 2,
+      name: "Nicolas Paiva",
+      role: "Aprovado como Trainee na Oceaneering",
+      videoUrl: "https://customer-assets.emergentagent.com/job_br-domain-config/artifacts/bt3ff692_WhatsApp%20Video%202026-03-02%20at%2009.29.17.mp4"
+    },
+    {
+      id: 3,
+      name: "Nathalia Antonieto",
+      role: "Aprovada como Trainee na Oceaneering",
+      videoUrl: "https://customer-assets.emergentagent.com/job_br-domain-config/artifacts/n46rnyx3_WhatsApp%20Video%202026-03-02%20at%2009.29.20.mp4"
+    }
+  ];
   const { createCheckoutSession, isProcessing } = useCheckout();
   const { trackEvent } = useAnalytics();
 
