@@ -433,17 +433,16 @@ const LandingPage = () => {
               <div className="cta-urgency">
                 <Clock size={20} />
                 <span className="mono-text">
-                  {data.sections?.cta?.urgency || "Vagas limitadas"}
+                  Vagas limitadas para o grupo VIP
                 </span>
               </div>
               <Button 
                 onClick={() => handlePurchase('cta_final')} 
                 size="lg" 
                 className="btn-primary cta-button"
-                disabled={isProcessing}
               >
-                {isProcessing ? 'Processando...' : (data.sections?.cta?.button || 'Garantir Minha Vaga Agora')}
-                {!isProcessing && <ArrowRight size={20} className="ml-2" />}
+                Entrar no Grupo VIP do Telegram
+                <ArrowRight size={20} className="ml-2" />
               </Button>
             </CardContent>
           </Card>
