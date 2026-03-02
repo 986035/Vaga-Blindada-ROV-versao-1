@@ -223,10 +223,9 @@ const LandingPage = () => {
               <Button 
                 onClick={() => handlePurchase('hero')} 
                 className="btn-primary"
-                disabled={isProcessing}
               >
-                {isProcessing ? 'Processando...' : (data.hero?.ctaPrimary || 'Garantir Minha Vaga')}
-                {!isProcessing && <ArrowRight size={16} className="ml-2" />}
+                Entrar na Lista VIP
+                <ArrowRight size={16} className="ml-2" />
               </Button>
               <Button onClick={handleLearnMore} variant="outline" className="btn-secondary">
                 {data.hero?.ctaSecondary || 'Conhecer o Método'}
