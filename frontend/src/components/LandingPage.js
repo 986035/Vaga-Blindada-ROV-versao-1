@@ -204,6 +204,38 @@ const LandingPage = () => {
               </div>
             </div>
             
+            {/* MailerLite Lead Capture Form */}
+            <div className="mailerlite-section">
+              <div className="mailerlite-container">
+                <div className="mailerlite-icon">📋</div>
+                <h3 className="mailerlite-title">Checklist Gratuito – Trainee ROV</h3>
+                <p className="mailerlite-subtitle">Baixe o passo a passo para se preparar para o processo seletivo de Trainee de ROV.</p>
+                <div id="mlb2-37275437" className="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-37275437">
+                  <form 
+                    className="mailerlite-form" 
+                    action="https://assets.mailerlite.com/jsonp/2120972/forms/179669314127791407/subscribe" 
+                    method="post" 
+                    target="_blank"
+                  >
+                    <input 
+                      type="email" 
+                      name="fields[email]" 
+                      placeholder="Digite seu melhor email" 
+                      required
+                      className="mailerlite-input"
+                    />
+                    <input type="hidden" name="ml-submit" value="1" />
+                    <input type="hidden" name="anticsrf" value="true" />
+                    <button type="submit" className="mailerlite-button">
+                      <Download size={18} />
+                      QUERO O CHECKLIST GRATUITO
+                    </button>
+                  </form>
+                  <p className="mailerlite-privacy">🔒 Seu email está seguro. Não enviamos spam.</p>
+                </div>
+              </div>
+            </div>
+            
             {/* Important Information Box - Below Video */}
             <div className="info-box-container">
               <div className="info-box">
