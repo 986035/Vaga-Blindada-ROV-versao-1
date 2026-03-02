@@ -32,7 +32,7 @@ const Header = ({ onPurchase }) => {
               className="btn-primary"
               size="sm"
             >
-              Garantir Vaga
+              Lista VIP
             </Button>
           </nav>
 
