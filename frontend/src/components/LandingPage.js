@@ -206,10 +206,13 @@ const LandingPage = () => {
             
             {/* MailerLite Lead Capture Form */}
             <div className="mailerlite-section">
+              <div className="mailerlite-authority">
+                <p className="authority-line-1">Antes de tentar o processo seletivo de Trainee ROV, veja se você está cometendo algum desses <strong>7 erros</strong>.</p>
+                <p className="authority-line-2">Baixe gratuitamente o checklist estratégico e descubra o que pode estar <strong>eliminando técnicos qualificados</strong> antes mesmo da entrevista.</p>
+              </div>
               <div className="mailerlite-container">
                 <div className="mailerlite-icon">📋</div>
                 <h3 className="mailerlite-title">Checklist Gratuito – Trainee ROV</h3>
-                <p className="mailerlite-subtitle">Baixe o passo a passo para se preparar para o processo seletivo de Trainee de ROV.</p>
                 <div id="mlb2-37275437" className="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-37275437">
                   <form 
                     className="mailerlite-form" 
