@@ -153,12 +153,19 @@ const LandingPage = () => {
                         controls={playingTestimonial === testimonial.id}
                         muted={playingTestimonial !== testimonial.id}
                         playsInline
-                        preload="metadata"
-                        src={testimonial.videoUrl + "#t=0.5"}
+                        preload="auto"
+                        src={testimonial.videoUrl}
+                        onLoadedData={(e) => {
+                          // Pula para 0.5s para mostrar o rosto
+                          if (e.target.currentTime === 0) {
+                            e.target.currentTime = 0.5;
+                          }
+                        }}
                         onClick={(e) => {
                           if (playingTestimonial !== testimonial.id) {
                             e.preventDefault();
                             setPlayingTestimonial(testimonial.id);
+                            e.target.currentTime = 0;
                             e.target.muted = false;
                             e.target.play();
                           }
@@ -169,8 +176,12 @@ const LandingPage = () => {
                       {playingTestimonial !== testimonial.id && (
                         <div 
                           className="testimonial-play-overlay"
-                          onClick={() => {
+                          onClick={(e) => {
+                            const video = e.currentTarget.previousSibling;
                             setPlayingTestimonial(testimonial.id);
+                            video.currentTime = 0;
+                            video.muted = false;
+                            video.play();
                           }}
                         >
                           <div className="testimonial-play-button">
