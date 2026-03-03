@@ -140,11 +140,11 @@ const LandingPage = () => {
             </div>
             
             <h1 className="hero-title heading-hero">
-              {data.product?.name || "VAGA BLINDADA ROV"}
+              Pare de ser ignorado nos processos seletivos de Trainee ROV
             </h1>
             
             <p className="hero-subtitle body-large">
-              {data.product?.subtitle || "Tudo o que você precisa para proteger sua vaga dos concorrentes."}
+              Descubra o passo a passo estratégico que realmente prepara técnicos para conquistar a vaga.
             </p>
 
             {/* Video Section */}
