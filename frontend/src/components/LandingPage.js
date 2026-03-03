@@ -43,6 +43,40 @@ const LandingPage = () => {
   // Link do Telegram para lista de espera
   const telegramLink = "https://t.me/+UoeYC9QlR9I2MGM5";
 
+  // Função para enviar email ao MailerLite
+  const handleEmailSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmittingEmail(true);
+    
+    const form = e.target;
+    const email = form.elements['fields[email]'].value;
+    
+    try {
+      await fetch('https://assets.mailerlite.com/jsonp/2120972/forms/179669314127791407/subscribe', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          'fields[email]': email,
+          'ml-submit': '1',
+          'anticsrf': 'true'
+        })
+      });
+      
+      // Sempre mostrar sucesso (no-cors não retorna resposta)
+      setEmailSubmitted(true);
+      trackEvent('email_capture', 'checklist');
+    } catch (error) {
+      console.error('Error:', error);
+      // Mesmo com erro, tenta mostrar sucesso pois no-cors não confirma
+      setEmailSubmitted(true);
+    } finally {
+      setIsSubmittingEmail(false);
+    }
+  };
+
   useEffect(() => {
     setIsVisible(true);
     // Track page view
