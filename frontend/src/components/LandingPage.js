@@ -381,7 +381,7 @@ const LandingPage = () => {
                 {[
                   "Jovens técnicos que querem entrar no setor offshore",
                   "Quem está iniciando na área e quer começar com vantagem",
-                  "Quem busca um guia completo e direto para conquistar sua vaga",
+                  "Quem quer um método direto e estratégico para conquistar sua vaga",
                   "Técnicos em elétrica, mecânica, automação, mecatrônica ou áreas correlatas"
                 ].map((item, index) => (
                   <div key={index} className="target-item">
