@@ -136,7 +136,7 @@ const LandingPage = () => {
           <div className="hero-content">
             <div className="hero-announcement">
               <Target size={16} />
-              <span>{data.hero?.announcement || "Vagas Limitadas • Acesso Prioritário"}</span>
+              <span>VAGA BLINDADA ROV • Método Estratégico</span>
             </div>
             
             <h1 className="hero-title heading-hero">
