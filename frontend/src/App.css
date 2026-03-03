@@ -869,6 +869,61 @@ body {
   margin: 0.75rem 0 0 0;
 }
 
+/* MailerLite Success Message */
+.mailerlite-success {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.success-icon {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.success-title {
+  color: #2ecc71;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.success-message {
+  color: #ecf0f1;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.success-message strong {
+  color: #f1c40f;
+}
+
+.success-cta {
+  color: #bdc3c7;
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.success-telegram-btn {
+  background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.success-telegram-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
+}
+
 /* MailerLite Responsive */
 @media (max-width: 768px) {
   .mailerlite-authority {
