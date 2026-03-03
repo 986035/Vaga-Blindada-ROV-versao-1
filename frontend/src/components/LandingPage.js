@@ -12,6 +12,8 @@ const LandingPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [playingTestimonial, setPlayingTestimonial] = useState(null);
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
   const { courseData, isLoading, error } = useCourseInfo();
   
   // Dados dos depoimentos
