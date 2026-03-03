@@ -247,31 +247,56 @@ const LandingPage = () => {
                 <p className="authority-line-2">Baixe gratuitamente o checklist estratégico e descubra o que pode estar <strong>eliminando técnicos qualificados</strong> antes mesmo da entrevista.</p>
               </div>
               <div className="mailerlite-container">
-                <div className="mailerlite-icon">📋</div>
-                <h3 className="mailerlite-title">Checklist Gratuito – Trainee ROV</h3>
-                <div id="mlb2-37275437" className="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-37275437">
-                  <form 
-                    className="mailerlite-form" 
-                    action="https://assets.mailerlite.com/jsonp/2120972/forms/179669314127791407/subscribe" 
-                    method="post" 
-                    target="_blank"
-                  >
-                    <input 
-                      type="email" 
-                      name="fields[email]" 
-                      placeholder="Digite seu melhor email" 
-                      required
-                      className="mailerlite-input"
-                    />
-                    <input type="hidden" name="ml-submit" value="1" />
-                    <input type="hidden" name="anticsrf" value="true" />
-                    <button type="submit" className="mailerlite-button">
-                      <Download size={18} />
-                      QUERO O CHECKLIST GRATUITO
+                {!emailSubmitted ? (
+                  <>
+                    <div className="mailerlite-icon">📋</div>
+                    <h3 className="mailerlite-title">Checklist Gratuito – Trainee ROV</h3>
+                    <div id="mlb2-37275437" className="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-37275437">
+                      <form 
+                        className="mailerlite-form" 
+                        onSubmit={handleEmailSubmit}
+                      >
+                        <input 
+                          type="email" 
+                          name="fields[email]" 
+                          placeholder="Digite seu melhor email" 
+                          required
+                          className="mailerlite-input"
+                          disabled={isSubmittingEmail}
+                        />
+                        <button type="submit" className="mailerlite-button" disabled={isSubmittingEmail}>
+                          {isSubmittingEmail ? (
+                            <>Enviando...</>
+                          ) : (
+                            <>
+                              <Download size={18} />
+                              QUERO O CHECKLIST GRATUITO
+                            </>
+                          )}
+                        </button>
+                      </form>
+                      <p className="mailerlite-privacy">🔒 Seu email está seguro. Não enviamos spam.</p>
+                    </div>
+                  </>
+                ) : (
+                  <div className="mailerlite-success">
+                    <div className="success-icon">✅</div>
+                    <h3 className="success-title">Checklist Enviado!</h3>
+                    <p className="success-message">
+                      Verifique sua caixa de entrada (e o spam) para baixar o checklist com os <strong>7 erros que eliminam técnicos</strong> no processo seletivo.
+                    </p>
+                    <p className="success-cta">
+                      Enquanto isso, entre no nosso grupo VIP do Telegram:
+                    </p>
+                    <button 
+                      onClick={() => window.open(telegramLink, '_blank')} 
+                      className="success-telegram-btn"
+                    >
+                      <MessageCircle size={18} />
+                      Entrar no Grupo VIP
                     </button>
-                  </form>
-                  <p className="mailerlite-privacy">🔒 Seu email está seguro. Não enviamos spam.</p>
-                </div>
+                  </div>
+                )}
               </div>
             </div>
             
