@@ -20,21 +20,21 @@ const LandingPage = () => {
     {
       id: 1,
       name: "Carlos",
-      role: "Trainee ROV",
+      role: "Aprovado como Trainee ROV",
       photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
       text: "Antes do Vaga Blindada, eu era ignorado em todos os processos seletivos de Trainee ROV. Depois de aplicar o método estratégico, consegui minha vaga em apenas 45 dias!"
     },
     {
       id: 2,
       name: "Ana",
-      role: "Técnica em Automação",
+      role: "Aprovada como Trainee ROV",
       photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
       text: "O método Vaga Blindada mudou completamente minha abordagem nos processos seletivos. Hoje trabalho embarcada e realizada profissionalmente!"
     },
     {
       id: 3,
       name: "Pedro",
-      role: "Técnico em Mecatrônica",
+      role: "Aprovado como Trainee ROV",
       photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
       text: "Tentei por 2 anos conseguir uma vaga offshore sem sucesso. Com o Vaga Blindada, em 2 meses recebi minha primeira proposta. O método realmente funciona!"
     }
