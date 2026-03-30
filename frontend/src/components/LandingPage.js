@@ -11,30 +11,32 @@ import LoadingSpinner from "./LoadingSpinner";
 const LandingPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [playingTestimonial, setPlayingTestimonial] = useState(null);
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
   const { courseData, isLoading, error } = useCourseInfo();
   
-  // Dados dos depoimentos
+  // Dados dos depoimentos com fotos e textos
   const testimonials = [
     {
       id: 1,
-      name: "Carlos Miranda",
-      role: "Aprovado como Trainee na Oceaneering",
-      videoUrl: "https://customer-assets.emergentagent.com/job_br-domain-config/artifacts/bli1zgma_IMG_6137.mp4"
+      name: "Carlos",
+      role: "Trainee ROV",
+      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      text: "Antes do Vaga Blindada, eu era ignorado em todos os processos seletivos de Trainee ROV. Depois de aplicar o método estratégico, consegui minha vaga em apenas 45 dias!"
     },
     {
       id: 2,
-      name: "Nicolas Paiva",
-      role: "Aprovado como Trainee na Oceaneering",
-      videoUrl: "https://customer-assets.emergentagent.com/job_br-domain-config/artifacts/bt3ff692_WhatsApp%20Video%202026-03-02%20at%2009.29.17.mp4"
+      name: "Ana",
+      role: "Técnica em Automação",
+      photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
+      text: "O método Vaga Blindada mudou completamente minha abordagem nos processos seletivos. Hoje trabalho embarcada e realizada profissionalmente!"
     },
     {
       id: 3,
-      name: "Nathalia Antonieto",
-      role: "Aprovada como Trainee na Oceaneering",
-      videoUrl: "https://customer-assets.emergentagent.com/job_br-domain-config/artifacts/n46rnyx3_WhatsApp%20Video%202026-03-02%20at%2009.29.20.mp4"
+      name: "Pedro",
+      role: "Técnico em Mecatrônica",
+      photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+      text: "Tentei por 2 anos conseguir uma vaga offshore sem sucesso. Com o Vaga Blindada, em 2 meses recebi minha primeira proposta. O método realmente funciona!"
     }
   ];
   const { createCheckoutSession, isProcessing } = useCheckout();
@@ -179,7 +181,7 @@ const LandingPage = () => {
               )}
             </div>
 
-            {/* Testimonials Section */}
+            {/* Testimonials Section - Cards with Photos */}
             <div className="testimonials-section">
               <h3 className="testimonials-title">
                 <Star size={24} className="text-yellow-400" />
@@ -187,53 +189,21 @@ const LandingPage = () => {
               </h3>
               <div className="testimonials-grid">
                 {testimonials.map((testimonial) => (
-                  <div key={testimonial.id} className="testimonial-card">
-                    <div className="testimonial-video-container">
-                      <video
-                        className="testimonial-video"
-                        controls={playingTestimonial === testimonial.id}
-                        muted={playingTestimonial !== testimonial.id}
-                        playsInline
-                        preload="auto"
-                        src={testimonial.videoUrl}
-                        onLoadedData={(e) => {
-                          // Pula para 0.5s para mostrar o rosto
-                          if (e.target.currentTime === 0) {
-                            e.target.currentTime = 0.5;
-                          }
-                        }}
-                        onClick={(e) => {
-                          if (playingTestimonial !== testimonial.id) {
-                            e.preventDefault();
-                            setPlayingTestimonial(testimonial.id);
-                            e.target.currentTime = 0;
-                            e.target.muted = false;
-                            e.target.play();
-                          }
-                        }}
-                      >
-                        Seu navegador não suporta vídeos.
-                      </video>
-                      {playingTestimonial !== testimonial.id && (
-                        <div 
-                          className="testimonial-play-overlay"
-                          onClick={(e) => {
-                            const video = e.currentTarget.previousSibling;
-                            setPlayingTestimonial(testimonial.id);
-                            video.currentTime = 0;
-                            video.muted = false;
-                            video.play();
-                          }}
-                        >
-                          <div className="testimonial-play-button">
-                            <PlayCircle size={48} />
-                          </div>
-                        </div>
-                      )}
+                  <div key={testimonial.id} className="testimonial-card-text">
+                    <div className="testimonial-photo-container">
+                      <img 
+                        src={testimonial.photo} 
+                        alt={`Foto de ${testimonial.name}`}
+                        className="testimonial-photo"
+                      />
+                      <div className="testimonial-quote-icon">"</div>
                     </div>
-                    <div className="testimonial-info">
-                      <h4 className="testimonial-name">{testimonial.name}</h4>
-                      <p className="testimonial-role">{testimonial.role}</p>
+                    <div className="testimonial-content">
+                      <p className="testimonial-text">{testimonial.text}</p>
+                      <div className="testimonial-author">
+                        <h4 className="testimonial-name">{testimonial.name}</h4>
+                        <p className="testimonial-role">{testimonial.role}</p>
+                      </div>
                     </div>
                   </div>
                 ))}
