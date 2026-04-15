@@ -51,7 +51,7 @@ class CourseInfo(BaseModel):
     offers: List[dict]
     testimonials: List[dict]
 
-# ORIGINAL Course data from course_data.py - RESTORED VERSION
+# Course data with real module structure
 course_data = {
     "product": {
         "name": "VAGA BLINDADA ROV",
@@ -71,57 +71,120 @@ course_data = {
     
     "stats": [
         {"number": "15+", "label": "Anos de Experiência"},
-        {"number": "10", "label": "Aulas Completas"},
+        {"number": "12", "label": "Aulas + Bônus"},
+        {"number": "5", "label": "Módulos Completos"},
         {"number": "100%", "label": "Método Prático"}
     ],
     
+    "modules": [
+        {
+            "id": 1,
+            "title": "O Mapa da Mina",
+            "subtitle": "Visão de Campo",
+            "icon": "map",
+            "color": "blue",
+            "lessons": [
+                {"number": "00", "title": "Boas-vindas: O seu cronograma até o primeiro embarque"},
+                {"number": "01", "title": "A Realidade Offshore: Onde o dinheiro está escondido"},
+                {"number": "02", "title": "A Carreira de ROV: Do Trainee ao Piloto Supervisor"}
+            ]
+        },
+        {
+            "id": 2,
+            "title": "O Perfil de Elite",
+            "subtitle": "O que o RH não fala",
+            "icon": "user-check",
+            "color": "green",
+            "lessons": [
+                {"number": "03", "title": "Mapa das Gigantes: Lista de empresas e onde elas postam as vagas"},
+                {"number": "04", "title": "DNA Offshore: O comportamento e as soft skills que valem ouro"},
+                {"number": "05", "title": "O Combo de Certificações: O que é obrigatório e o que é perda de tempo/dinheiro"}
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Blindagem de Candidatura",
+            "subtitle": "A Prática",
+            "icon": "shield",
+            "color": "purple",
+            "lessons": [
+                {"number": "06", "title": "Currículo Magnético: O modelo exato para passar nos filtros de IA"},
+                {"number": "07", "title": "O Caminho do Contrato: Entendendo as etapas (da ligação ao exame médico)"},
+                {"number": "08", "title": "Campo Minado: Os 5 erros que queimam sua ficha no mercado para sempre"}
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Diferenciação e Vantagem Competitiva",
+            "subtitle": "Seu Diferencial",
+            "icon": "trophy",
+            "color": "orange",
+            "lessons": [
+                {"number": "09", "title": "O Segredo da Vaga: Como ser o candidato nº 1 mesmo sem experiência offshore"},
+                {"number": "10", "title": "Seu Plano de Guerra: O passo a passo para os próximos 30 dias"},
+                {"number": "11", "title": "Conclusão: O próximo nível da sua carreira"}
+            ]
+        },
+        {
+            "id": "bonus",
+            "title": "Arsenal do Candidato",
+            "subtitle": "Módulo BÔNUS",
+            "icon": "gift",
+            "color": "gold",
+            "lessons": [
+                {"number": "B1", "title": "O que estudar para a Prova Técnica (Simulado)"},
+                {"number": "B2", "title": "Modelos de Currículo (Word) + Checklists em PDF"}
+            ]
+        }
+    ],
+
     "benefits": [
         {
             "title": "Mercado Offshore e ROV",
-            "description": "Como funciona o mercado offshore e onde o ROV atua. Entenda as oportunidades reais do setor."
+            "description": "Entenda onde o dinheiro está escondido e como funciona a carreira do Trainee ao Piloto Supervisor."
         },
         {
-            "title": "Habilidades Valorizadas", 
-            "description": "Quais habilidades as empresas realmente valorizam nos candidatos a trainee ROV."
+            "title": "Mapa das Gigantes",
+            "description": "Lista completa de empresas que contratam e onde elas postam as vagas. Pare de procurar no lugar errado."
         },
         {
-            "title": "Sistemas e Ferramentas",
-            "description": "Os principais sensores, ferramentas e sistemas usados no ROV que você precisa conhecer."
+            "title": "Perfil de Elite",
+            "description": "As soft skills, comportamentos e certificações que o RH realmente valoriza — e o que é perda de dinheiro."
         },
         {
-            "title": "Currículo Profissional",
-            "description": "Como montar um currículo profissional mesmo sendo iniciante, destacando seus pontos fortes."
+            "title": "Currículo Magnético",
+            "description": "O modelo exato para passar nos filtros de IA e chegar na mão do recrutador, mesmo sem experiência offshore."
         },
         {
-            "title": "Entrevistas e Seleções",
-            "description": "Dicas práticas para entrevistas e processos seletivos das principais empresas offshore."
+            "title": "Blindagem Total",
+            "description": "Os 5 erros que queimam sua ficha no mercado para sempre e como evitar cada um deles."
         },
         {
-            "title": "Vantagem Competitiva",
-            "description": "O principal: como proteger a SUA vaga dos concorrentes e se destacar no mercado."
+            "title": "Plano de Guerra 30 Dias",
+            "description": "O passo a passo estratégico para os próximos 30 dias até conquistar sua vaga de trainee ROV."
         }
     ],
     
     "course_content": [
         {
-            "title": "10 Aulas em Vídeo",
-            "description": "Organizadas passo a passo para seu aprendizado progressivo"
+            "title": "12 Aulas em Vídeo",
+            "description": "4 módulos + bônus, organizados do zero ao embarque"
         },
         {
-            "title": "Apostilas e Slides", 
+            "title": "Apostilas e Slides",
             "description": "Materiais complementares para reforçar o aprendizado"
         },
         {
             "title": "Modelo de Currículo",
-            "description": "Pronto para edição, otimizado para o mercado offshore"
+            "description": "Pronto para edição, otimizado para passar nos filtros de IA"
         },
         {
-            "title": "Checklists de Preparação",
+            "title": "Simulado de Prova Técnica",
+            "description": "Prepare-se para a prova técnica com questões reais do mercado"
+        },
+        {
+            "title": "Checklists em PDF",
             "description": "Para você não esquecer nenhum detalhe importante"
-        },
-        {
-            "title": "Certificado de Conclusão",
-            "description": "10 horas de certificação para seu currículo"
         },
         {
             "title": "Acesso ao Instrutor",
@@ -139,8 +202,8 @@ course_data = {
             "description": "Lista completa de empresas que contratam profissionais de ROV"
         },
         {
-            "title": "Cronograma de Estudos",
-            "description": "Para te manter no foco e organizar seu tempo de estudo"
+            "title": "Simulado de Prova Técnica",
+            "description": "Questões reais para você treinar antes do processo seletivo"
         },
         {
             "title": "Atualizações Gratuitas",
@@ -155,10 +218,16 @@ course_data = {
         "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300"
     },
     
+    "checkout_url": "",
+    
     "sections": {
         "benefits": {
             "title": "O que você vai aprender",
             "subtitle": "Conteúdo completo e prático para se destacar no mercado offshore"
+        },
+        "modules": {
+            "title": "Conteúdo Completo do Curso",
+            "subtitle": "5 módulos estratégicos para te levar do zero à vaga"
         },
         "target": {
             "title": "Para quem é esse curso?",
@@ -170,7 +239,7 @@ course_data = {
             "subtitle": "Conteúdo completo para sua preparação"
         },
         "bonus": {
-            "badge": "BÔNUS EXCLUSIVOS", 
+            "badge": "BÔNUS EXCLUSIVOS",
             "title": "Vantagens adicionais para os primeiros inscritos"
         },
         "instructor": {

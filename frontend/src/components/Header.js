@@ -21,6 +21,9 @@ const Header = ({ onPurchase }) => {
             <button className="nav-link" onClick={() => document.getElementById('benefits')?.scrollIntoView({ behavior: 'smooth' })}>
               Benefícios
             </button>
+            <button className="nav-link" onClick={() => document.getElementById('modules')?.scrollIntoView({ behavior: 'smooth' })}>
+              Módulos
+            </button>
             <button className="nav-link" onClick={() => document.getElementById('content')?.scrollIntoView({ behavior: 'smooth' })}>
               Conteúdo
             </button>
@@ -32,7 +35,7 @@ const Header = ({ onPurchase }) => {
               className="btn-primary"
               size="sm"
             >
-              Lista VIP
+              Garantir Vaga
             </Button>
           </nav>
 

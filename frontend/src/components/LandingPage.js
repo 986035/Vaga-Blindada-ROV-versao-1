@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { CheckCircle, Play, Users, BookOpen, Award, Clock, Download, Target, Star, ArrowRight, PlayCircle, FileText, MessageCircle, Calendar } from "lucide-react";
+import { CheckCircle, Play, Users, BookOpen, Award, Clock, Download, Target, Star, ArrowRight, PlayCircle, FileText, MessageCircle, Calendar, Map, UserCheck, Shield, Trophy, Gift, ChevronDown, ChevronUp, Compass, Lock } from "lucide-react";
 import { useCourseInfo, useCheckout, useAnalytics } from "../hooks/useApi";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -13,7 +13,33 @@ const LandingPage = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
+  const [expandedModules, setExpandedModules] = useState({});
   const { courseData, isLoading, error } = useCourseInfo();
+  
+  // Kiwify checkout URL - será substituído pelo link real
+  const kiwifyCheckoutUrl = "";
+
+  // Module icon mapping
+  const moduleIcons = {
+    "map": Map,
+    "user-check": UserCheck,
+    "shield": Shield,
+    "trophy": Trophy,
+    "gift": Gift
+  };
+
+  // Module color mapping
+  const moduleColors = {
+    "blue": { bg: "rgba(52, 152, 219, 0.12)", border: "rgba(52, 152, 219, 0.4)", text: "#3498db", glow: "rgba(52, 152, 219, 0.2)" },
+    "green": { bg: "rgba(46, 204, 113, 0.12)", border: "rgba(46, 204, 113, 0.4)", text: "#2ecc71", glow: "rgba(46, 204, 113, 0.2)" },
+    "purple": { bg: "rgba(155, 89, 182, 0.12)", border: "rgba(155, 89, 182, 0.4)", text: "#9b59b6", glow: "rgba(155, 89, 182, 0.2)" },
+    "orange": { bg: "rgba(230, 126, 34, 0.12)", border: "rgba(230, 126, 34, 0.4)", text: "#e67e22", glow: "rgba(230, 126, 34, 0.2)" },
+    "gold": { bg: "rgba(241, 196, 15, 0.15)", border: "rgba(241, 196, 15, 0.5)", text: "#f1c40f", glow: "rgba(241, 196, 15, 0.25)" }
+  };
+
+  const toggleModule = (moduleId) => {
+    setExpandedModules(prev => ({ ...prev, [moduleId]: !prev[moduleId] }));
+  };
   
   // Dados dos depoimentos com fotos e textos
   const testimonials = [
@@ -87,13 +113,23 @@ const LandingPage = () => {
 
   const handlePurchase = async (source = 'hero') => {
     try {
-      await trackEvent('cta_click', source, { button: 'telegram_waitlist' });
-      // Redireciona para o Telegram
-      window.open(telegramLink, '_blank');
+      await trackEvent('cta_click', source, { button: 'purchase' });
+      // Se tiver link da Kiwify, redireciona para lá
+      const checkoutUrl = data.checkout_url || kiwifyCheckoutUrl;
+      if (checkoutUrl) {
+        window.open(checkoutUrl, '_blank');
+      } else {
+        // Fallback para Telegram enquanto não tem checkout
+        window.open(telegramLink, '_blank');
+      }
     } catch (error) {
       console.error('Error:', error);
-      // Abre o Telegram mesmo se o tracking falhar
-      window.open(telegramLink, '_blank');
+      const checkoutUrl = data.checkout_url || kiwifyCheckoutUrl;
+      if (checkoutUrl) {
+        window.open(checkoutUrl, '_blank');
+      } else {
+        window.open(telegramLink, '_blank');
+      }
     }
   };
 
@@ -339,6 +375,100 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* === MODULES / CURRICULUM SECTION === */}
+      <section id="modules" className="modules-section">
+        <div className="container">
+          <div className="section-header">
+            <div className="modules-section-badge">
+              <Compass size={18} />
+              <span>CURRÍCULO COMPLETO</span>
+            </div>
+            <h2 className="heading-1">
+              {data.sections?.modules?.title || "Conteúdo Completo do Curso"}
+            </h2>
+            <p className="body-medium">
+              {data.sections?.modules?.subtitle || "5 módulos estratégicos para te levar do zero à vaga"}
+            </p>
+          </div>
+          
+          <div className="modules-grid">
+            {(data.modules || []).map((mod, index) => {
+              const isBonus = mod.id === "bonus";
+              const colors = moduleColors[mod.color] || moduleColors.blue;
+              const IconComp = moduleIcons[mod.icon] || BookOpen;
+              const isExpanded = expandedModules[mod.id] !== undefined ? expandedModules[mod.id] : true;
+              
+              return (
+                <div 
+                  key={mod.id} 
+                  className={`module-card ${isBonus ? 'module-card-bonus' : ''}`}
+                  style={{
+                    '--module-bg': colors.bg,
+                    '--module-border': colors.border,
+                    '--module-text': colors.text,
+                    '--module-glow': colors.glow
+                  }}
+                >
+                  {/* Module Header */}
+                  <div 
+                    className="module-card-header"
+                    onClick={() => toggleModule(mod.id)}
+                  >
+                    <div className="module-card-header-left">
+                      <div className="module-icon-wrapper" style={{ background: colors.bg, borderColor: colors.border }}>
+                        <IconComp size={24} style={{ color: colors.text }} />
+                      </div>
+                      <div className="module-header-text">
+                        <span className="module-number" style={{ color: colors.text }}>
+                          {isBonus ? "BÔNUS" : `MÓDULO ${mod.id}`}
+                        </span>
+                        <h3 className="module-title">{mod.title}</h3>
+                        <span className="module-subtitle">{mod.subtitle}</span>
+                      </div>
+                    </div>
+                    <div className="module-toggle">
+                      <span className="module-lesson-count" style={{ color: colors.text }}>
+                        {mod.lessons.length} {mod.lessons.length === 1 ? 'item' : 'aulas'}
+                      </span>
+                      {isExpanded ? (
+                        <ChevronUp size={20} style={{ color: colors.text }} />
+                      ) : (
+                        <ChevronDown size={20} style={{ color: colors.text }} />
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Module Lessons */}
+                  <div className={`module-lessons ${isExpanded ? 'module-lessons-expanded' : 'module-lessons-collapsed'}`}>
+                    {mod.lessons.map((lesson, lessonIdx) => (
+                      <div key={lessonIdx} className="module-lesson-item">
+                        <div className="lesson-number-badge" style={{ background: colors.bg, borderColor: colors.border, color: colors.text }}>
+                          {lesson.number}
+                        </div>
+                        <span className="lesson-title">{lesson.title}</span>
+                        <Lock size={14} className="lesson-lock-icon" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* CTA after modules */}
+          <div className="modules-cta">
+            <Button 
+              onClick={() => handlePurchase('modules')} 
+              className="btn-primary cta-button"
+            >
+              Garantir Minha Vaga Agora
+              <ArrowRight size={18} className="ml-2" />
+            </Button>
+            <p className="modules-cta-subtitle">Acesso imediato a todos os 5 módulos + bônus</p>
+          </div>
+        </div>
+      </section>
+
       {/* Target Audience Section */}
       <section className="target-section">
         <div className="container">
@@ -392,7 +522,7 @@ const LandingPage = () => {
           </div>
           
           <div className="content-grid">
-            {(data.courseContent || []).map((item, index) => {
+            {(data.course_content || []).map((item, index) => {
               const iconMap = {
                 "10 Aulas em Vídeo": PlayCircle,
                 "Apostilas e Slides": FileText,
@@ -507,7 +637,7 @@ const LandingPage = () => {
                 size="lg" 
                 className="btn-primary cta-button"
               >
-                Entrar no Grupo VIP do Telegram
+                Garantir Minha Vaga Agora
                 <ArrowRight size={20} className="ml-2" />
               </Button>
             </CardContent>

@@ -101,3 +101,77 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Add real course module structure with 5 modules (4 main + 1 bonus) to the landing page with expandable cards. Prepare Kiwify checkout integration. Update benefits/stats with real content."
+
+backend:
+  - task: "Course info API returns modules data"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Updated course_data with 5 modules, real benefits, updated stats, checkout_url field"
+        - working: true
+          agent: "testing"
+          comment: "✅ VERIFIED: GET /api/course/info returns correct structure - 5 modules (4 main + 1 bonus), 4 stats, 6 benefits, checkout_url field, sections object with modules key. All module structures validated with id, title, subtitle, icon, color, lessons array. Lead capture and root endpoints also working correctly."
+
+frontend:
+  - task: "Module cards section with expandable lessons"
+    implemented: true
+    working: true
+    file: "frontend/src/components/LandingPage.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Added modules section with color-coded cards, expandable lessons, lock icons, bonus card with gold styling"
+
+  - task: "Navigation updated with Modules link"
+    implemented: true
+    working: true
+    file: "frontend/src/components/Header.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Added Módulos nav link, changed CTA to Garantir Vaga"
+
+  - task: "CTA buttons ready for Kiwify checkout"
+    implemented: true
+    working: true
+    file: "frontend/src/components/LandingPage.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "handlePurchase now checks for checkout_url from API or kiwifyCheckoutUrl, falls back to Telegram"
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Course info API returns modules data"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    - agent: "main"
+      message: "Updated backend course_data with 5 modules, real benefits, stats. Frontend has new modules section with expandable cards. Backend test needed for /api/course/info returning modules array."
+    - agent: "testing"
+      message: "✅ BACKEND TESTING COMPLETE: All API endpoints working correctly. GET /api/course/info verified with exact structure requirements (5 modules, 4 stats, 6 benefits, checkout_url, sections). POST /api/leads/capture and GET /api/ also functioning properly. Created comprehensive backend_test.py for future testing. No critical issues found."
