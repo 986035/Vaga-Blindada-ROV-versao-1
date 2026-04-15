@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelo de Currículo - Trainee ROV</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f8f9fa;
+    color: #2c3e50;
+    line-height: 1.6;
+  }
+  
+  .page-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+  }
+  
+  /* INSTRUCTIONS PAGE */
+  .instructions {
+    padding: 50px 60px;
+    background: white;
+    page-break-after: always;
+  }
+  
+  .instr-header {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #1a2332, #2c3e50);
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  
+  .instr-header h1 {
+    font-size: 24px;
+    color: #f1c40f;
+    margin-bottom: 5px;
+  }
+  
+  .instr-header p {
+    color: #bdc3c7;
+    font-size: 14px;
+  }
+  
+  .instr-section {
+    margin-bottom: 25px;
+  }
+  
+  .instr-section h2 {
+    font-size: 18px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #3498db;
+    display: inline-block;
+  }
+  
+  .instr-section p, .instr-section li {
+    font-size: 14px;
+    color: #34495e;
+    margin-bottom: 6px;
+  }
+  
+  .instr-section ul { margin-left: 20px; }
+  
+  .tip-green {
+    background: #d5f5e3;
+    border-left: 4px solid #27ae60;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 13px;
+    color: #1e8449;
+  }
+  
+  .tip-red {
+    background: #fadbd8;
+    border-left: 4px solid #e74c3c;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 13px;
+    color: #922b21;
+  }
+  
+  .tip-yellow {
+    background: #fef9e7;
+    border-left: 4px solid #f1c40f;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 13px;
+    color: #7d6608;
+  }
+
+  /* CV TEMPLATE */
+  .cv-page {
+    padding: 40px 50px;
+    min-height: 100vh;
+  }
+  
+  /* Header */
+  .cv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #2c3e50;
+    margin-bottom: 25px;
+  }
+  
+  .cv-name {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a2332;
+    letter-spacing: -0.5px;
+  }
+  
+  .cv-objective {
+    font-size: 14px;
+    color: #3498db;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  
+  .cv-contact {
+    text-align: right;
+    font-size: 12px;
+    color: #7f8c8d;
+    line-height: 1.8;
+  }
+  
+  .cv-contact strong {
+    color: #2c3e50;
+  }
+  
+  /* Sections */
+  .cv-section {
+    margin-bottom: 22px;
+  }
+  
+  .cv-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #2c3e50;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #3498db;
+    margin-bottom: 12px;
+  }
+  
+  /* Entries */
+  .cv-entry {
+    margin-bottom: 14px;
+  }
+  
+  .cv-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  
+  .cv-entry-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+  
+  .cv-entry-date {
+    font-size: 12px;
+    color: #95a5a6;
+    font-weight: 500;
+  }
+  
+  .cv-entry-subtitle {
+    font-size: 13px;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+  
+  .cv-entry-desc {
+    font-size: 13px;
+    color: #34495e;
+    padding-left: 14px;
+    border-left: 2px solid #ecf0f1;
+  }
+  
+  .cv-entry-desc li {
+    margin-bottom: 3px;
+    list-style: none;
+    position: relative;
+    padding-left: 14px;
+  }
+  
+  .cv-entry-desc li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-weight: bold;
+  }
+  
+  /* Skills */
+  .cv-skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  
+  .cv-skill-item {
+    font-size: 13px;
+    color: #34495e;
+    padding: 4px 0;
+    padding-left: 14px;
+    position: relative;
+  }
+  
+  .cv-skill-item::before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-size: 8px;
+    top: 8px;
+  }
+  
+  /* Placeholder texts */
+  .placeholder {
+    color: #e74c3c;
+    font-style: italic;
+    background: #fef9e7;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: inherit;
+  }
+  
+  .cv-footer {
+    text-align: center;
+    padding: 20px;
+    color: #bdc3c7;
+    font-size: 11px;
+    border-top: 1px solid #ecf0f1;
+    margin-top: 30px;
+  }
+  
+  @media print {
+    body { background: white; }
+    .page-wrapper { box-shadow: none; }
+    .placeholder { background: #fff3cd; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ============================== -->
+  <!-- PÁGINA 1: INSTRUÇÕES -->
+  <!-- ============================== -->
+  <div class="instructions">
+    <div class="instr-header">
+      <h1>Modelo de Currículo — Trainee ROV</h1>
+      <p>VAGA BLINDADA ROV • Material Exclusivo para Alunos</p>
+    </div>
+
+    <div class="instr-section">
+      <h2>📋 Como usar este modelo</h2>
+      <p>Na próxima página está o modelo pronto. Substitua todos os textos em <span class="placeholder">vermelho</span> pelos seus dados reais.</p>
+      <ul>
+        <li>Salve como PDF: <strong>Ctrl+P → "Salvar como PDF"</strong></li>
+        <li>Ou copie o texto para um editor (Word, Google Docs)</li>
+        <li>Mantenha a estrutura — ela foi otimizada para passar nos filtros de IA das empresas</li>
+      </ul>
+    </div>
+
+    <div class="instr-section">
+      <h2>✅ O que FAZER no currículo</h2>
+      <div class="tip-green">
+        <strong>FAÇA:</strong>
+        <ul>
+          <li>Objetivo claro: <strong>"Piloto de ROV Trainee"</strong> — nada genérico</li>
+          <li>Destaque certificações relevantes (CBSP, HUET, NR-10, NR-33, NR-35)</li>
+          <li>Mencione inglês (mesmo que básico — mostre que está estudando)</li>
+          <li>Inclua experiências com manutenção, elétrica, hidráulica, mesmo que de estágio</li>
+          <li>Use palavras-chave do setor: offshore, manutenção preventiva, sistemas hidráulicos, ROV</li>
+          <li>Máximo 1 página (2 páginas só se tiver muita experiência relevante)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="instr-section">
+      <h2>❌ O que NÃO FAZER</h2>
+      <div class="tip-red">
+        <strong>EVITE:</strong>
+        <ul>
+          <li>Objetivo genérico como "busco crescimento profissional"</li>
+          <li>Colocar mais de uma área de interesse (não coloque "Piloto ROV ou Eletricista")</li>
+          <li>Foto (a maioria das empresas offshore não pede)</li>
+          <li>Informações falsas — você será testado na entrevista técnica</li>
+          <li>Mais de 2 páginas</li>
+          <li>Experiências irrelevantes (garçom, vendedor — a menos que não tenha nada técnico)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="instr-section">
+      <h2>💡 Dica de Ouro</h2>
+      <div class="tip-yellow">
+        <strong>FILTROS DE IA:</strong> Grandes empresas como Fugro, DOF e Subsea7 usam sistemas automatizados para filtrar currículos. Seu currículo precisa conter as <strong>palavras-chave certas</strong> para passar. Este modelo já inclui as principais. Não altere a estrutura das seções — elas foram pensadas para maximizar sua aprovação no filtro automático.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- PÁGINA 2: CURRÍCULO MODELO -->
+  <!-- ============================== -->
+  <div class="cv-page">
+    
+    <div class="cv-header">
+      <div>
+        <div class="cv-name"><span class="placeholder">SEU NOME COMPLETO</span></div>
+        <div class="cv-objective">Objetivo: Piloto de ROV Trainee</div>
+      </div>
+      <div class="cv-contact">
+        <span class="placeholder">seu.email@email.com</span><br>
+        <span class="placeholder">(XX) XXXXX-XXXX</span><br>
+        <span class="placeholder">Cidade/UF</span><br>
+        <strong>LinkedIn:</strong> <span class="placeholder">linkedin.com/in/seuperfil</span>
+      </div>
+    </div>
+
+    <!-- RESUMO PROFISSIONAL -->
+    <div class="cv-section">
+      <div class="cv-section-title">Resumo Profissional</div>
+      <p style="font-size: 13px; color: #34495e;">
+        Técnico em <span class="placeholder">[sua formação: Mecatrônica/Eletrônica/Mecânica/Elétrica]</span> com 
+        <span class="placeholder">[X anos]</span> de experiência em manutenção de equipamentos industriais. 
+        Conhecimentos em sistemas hidráulicos, elétricos e eletrônicos aplicados ao setor offshore. 
+        Disponibilidade total para trabalho embarcado em regime de turno.
+        Inglês <span class="placeholder">[nível: básico/intermediário/avançado]</span>.
+      </p>
+    </div>
+
+    <!-- FORMAÇÃO -->
+    <div class="cv-section">
+      <div class="cv-section-title">Formação Acadêmica</div>
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title">Técnico em <span class="placeholder">[Mecatrônica/Eletrônica/Mecânica/Elétrica]</span></span>
+          <span class="cv-entry-date"><span class="placeholder">2020 - 2022</span></span>
+        </div>
+        <div class="cv-entry-subtitle"><span class="placeholder">[Nome da Instituição — Cidade/UF]</span></div>
+      </div>
+    </div>
+
+    <!-- CERTIFICAÇÕES -->
+    <div class="cv-section">
+      <div class="cv-section-title">Certificações e Cursos</div>
+      <div class="cv-entry">
+        <div class="cv-entry-desc">
+          <ul>
+            <li><strong>CBSP</strong> — Curso Básico de Segurança de Plataforma <span class="placeholder">[Ano]</span></li>
+            <li><strong>HUET</strong> — Helicopter Underwater Escape Training <span class="placeholder">[Ano]</span></li>
+            <li><strong>NR-10</strong> — Segurança em Instalações Elétricas <span class="placeholder">[Ano]</span></li>
+            <li><strong>NR-33</strong> — Espaço Confinado <span class="placeholder">[Ano]</span></li>
+            <li><strong>NR-35</strong> — Trabalho em Altura <span class="placeholder">[Ano]</span></li>
+            <li><strong>Vaga Blindada ROV</strong> — Preparação Estratégica para Trainee ROV — 2025</li>
+            <li><span class="placeholder">[Adicione outros cursos relevantes: hidráulica, pneumática, CLPs, etc.]</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIÊNCIA -->
+    <div class="cv-section">
+      <div class="cv-section-title">Experiência Profissional</div>
+      
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title"><span class="placeholder">[Cargo — ex: Técnico de Manutenção]</span></span>
+          <span class="cv-entry-date"><span class="placeholder">[Mês/Ano - Mês/Ano]</span></span>
+        </div>
+        <div class="cv-entry-subtitle"><span class="placeholder">[Nome da Empresa — Cidade/UF]</span></div>
+        <div class="cv-entry-desc">
+          <ul>
+            <li><span class="placeholder">[Descreva atividade relacionada a manutenção, ex: "Manutenção preventiva e corretiva em sistemas hidráulicos industriais"]</span></li>
+            <li><span class="placeholder">[Descreva atividade elétrica/eletrônica, ex: "Diagnóstico e reparo de painéis elétricos de comando"]</span></li>
+            <li><span class="placeholder">[Descreva resultado ou conquista, ex: "Redução de 30% no tempo de parada de equipamentos"]</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cv-entry">
+        <div class="cv-entry-header">
+          <span class="cv-entry-title"><span class="placeholder">[Cargo anterior ou estágio]</span></span>
+          <span class="cv-entry-date"><span class="placeholder">[Mês/Ano - Mês/Ano]</span></span>
+        </div>
+        <div class="cv-entry-subtitle"><span class="placeholder">[Nome da Empresa — Cidade/UF]</span></div>
+        <div class="cv-entry-desc">
+          <ul>
+            <li><span class="placeholder">[Atividade relevante 1]</span></li>
+            <li><span class="placeholder">[Atividade relevante 2]</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- HABILIDADES -->
+    <div class="cv-section">
+      <div class="cv-section-title">Habilidades Técnicas</div>
+      <div class="cv-skills-grid">
+        <div class="cv-skill-item">Sistemas hidráulicos e pneumáticos</div>
+        <div class="cv-skill-item">Manutenção preventiva e corretiva</div>
+        <div class="cv-skill-item">Leitura de esquemas elétricos</div>
+        <div class="cv-skill-item">Instrumentação e metrologia</div>
+        <div class="cv-skill-item">Diagnóstico de falhas (troubleshooting)</div>
+        <div class="cv-skill-item">Pacote Office e informática</div>
+        <div class="cv-skill-item"><span class="placeholder">[Habilidade adicional]</span></div>
+        <div class="cv-skill-item"><span class="placeholder">[Habilidade adicional]</span></div>
+      </div>
+    </div>
+
+    <!-- INFORMAÇÕES ADICIONAIS -->
+    <div class="cv-section">
+      <div class="cv-section-title">Informações Adicionais</div>
+      <div class="cv-entry-desc">
+        <ul>
+          <li><strong>Idiomas:</strong> Português (nativo), Inglês (<span class="placeholder">[nível]</span>)</li>
+          <li><strong>CNH:</strong> <span class="placeholder">[Categoria]</span></li>
+          <li><strong>Disponibilidade:</strong> Total para trabalho embarcado em regime de turno</li>
+          <li><strong>CREA/CFT:</strong> <span class="placeholder">[Número do registro — se tiver]</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-footer">
+      <strong>VAGA BLINDADA ROV</strong> — Modelo de Currículo para Trainee ROV<br>
+      © 2025 Leandro Pinheiro • Para salvar como PDF: Ctrl+P → "Salvar como PDF"
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

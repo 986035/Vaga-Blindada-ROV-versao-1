@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado - Prova Técnica Trainee ROV</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f8f9fa;
+    color: #1a2332;
+    line-height: 1.7;
+    padding: 0;
+  }
+  
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 50px 60px;
+    min-height: 100vh;
+  }
+  
+  /* Cover */
+  .cover {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #1a2332 0%, #2c3e50 50%, #34495e 100%);
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    page-break-after: always;
+  }
+  
+  .cover-badge {
+    display: inline-block;
+    background: rgba(241,196,15,0.2);
+    border: 1px solid #f1c40f;
+    color: #f1c40f;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  
+  .cover h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #f1c40f;
+  }
+  
+  .cover h2 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #bdc3c7;
+    margin-bottom: 30px;
+  }
+  
+  .cover-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .cover-stat {
+    text-align: center;
+  }
+  
+  .cover-stat-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: #3498db;
+  }
+  
+  .cover-stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #95a5a6;
+  }
+  
+  /* Section headers */
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a2332;
+    margin: 40px 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #3498db;
+    display: inline-block;
+  }
+  
+  .section-desc {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+  
+  /* Questions */
+  .question {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #e8ecf0;
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+    background: #fafbfc;
+  }
+  
+  .question-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .question-number {
+    background: #3498db;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  
+  .question-area {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    background: #eaf2f8;
+    color: #2980b9;
+  }
+  
+  .question-area.mecanica { background: #fdebd0; color: #e67e22; }
+  .question-area.eletrica { background: #d5f5e3; color: #27ae60; }
+  .question-area.eletronica { background: #e8daef; color: #8e44ad; }
+  .question-area.rov { background: #d6eaf8; color: #2980b9; }
+  .question-area.seguranca { background: #fadbd8; color: #e74c3c; }
+  
+  .question-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+  
+  .answer-space {
+    border: 1px dashed #bdc3c7;
+    border-radius: 8px;
+    padding: 15px;
+    min-height: 80px;
+    background: white;
+    color: #95a5a6;
+    font-size: 13px;
+    font-style: italic;
+  }
+  
+  /* Answer key section */
+  .answer-key {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 3px solid #e74c3c;
+    page-break-before: always;
+  }
+  
+  .answer-key .section-title {
+    border-bottom-color: #e74c3c;
+  }
+  
+  .answer-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fafbfc;
+    border-radius: 8px;
+    border-left: 3px solid #27ae60;
+  }
+  
+  .answer-item strong {
+    color: #27ae60;
+    font-size: 14px;
+  }
+  
+  .answer-item p {
+    font-size: 14px;
+    color: #34495e;
+    margin-top: 5px;
+    line-height: 1.6;
+  }
+  
+  /* Tips box */
+  .tips-box {
+    background: linear-gradient(135deg, #fef9e7, #fdebd0);
+    border: 1px solid #f9e79f;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 30px 0;
+  }
+  
+  .tips-box h3 {
+    color: #d68910;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .tips-box li {
+    font-size: 14px;
+    color: #7d6608;
+    margin-bottom: 6px;
+    margin-left: 20px;
+  }
+  
+  /* Footer */
+  .doc-footer {
+    text-align: center;
+    padding: 30px;
+    color: #95a5a6;
+    font-size: 12px;
+    border-top: 1px solid #ecf0f1;
+    margin-top: 40px;
+  }
+  
+  @media print {
+    body { padding: 0; background: white; }
+    .page { padding: 30px 40px; box-shadow: none; }
+    .question { break-inside: avoid; }
+    .answer-item { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- CAPA -->
+  <div class="cover">
+    <div class="cover-badge">Material Exclusivo • Vaga Blindada ROV</div>
+    <h1>SIMULADO<br>Prova Técnica Trainee ROV</h1>
+    <h2>Prepare-se para o processo seletivo das principais empresas offshore</h2>
+    <div class="cover-info">
+      <div class="cover-stat">
+        <div class="cover-stat-number">20</div>
+        <div class="cover-stat-label">Questões</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-number">5</div>
+        <div class="cover-stat-label">Áreas</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-number">100%</div>
+        <div class="cover-stat-label">Gabarito</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTRUÇÕES -->
+  <div class="tips-box">
+    <h3>📋 Como usar este simulado:</h3>
+    <ul>
+      <li>Responda todas as questões <strong>sem consultar o gabarito</strong></li>
+      <li>Cronometre seu tempo — tente fazer em até <strong>90 minutos</strong></li>
+      <li>Depois confira suas respostas no <strong>gabarito comentado</strong> no final</li>
+      <li>Anote os temas que errou e estude novamente</li>
+      <li>As questões são baseadas em provas reais de empresas como <strong>Fugro, DOF Subsea e Subsea7</strong></li>
+    </ul>
+  </div>
+
+  <!-- SEÇÃO 1: ELÉTRICA -->
+  <h2 class="section-title">⚡ Elétrica</h2>
+  <p class="section-desc">Questões sobre circuitos, Lei de Ohm, transformadores e motores — temas frequentes nas provas.</p>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">1</div>
+      <span class="question-area eletrica">Elétrica</span>
+    </div>
+    <p class="question-text">Explique a Lei de Ohm e dê um exemplo prático de como ela se aplica em um circuito elétrico de um sistema ROV.</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">2</div>
+      <span class="question-area eletrica">Elétrica</span>
+    </div>
+    <p class="question-text">Qual a diferença entre ligação estrela (Y) e triângulo (Δ) em motores elétricos trifásicos? Em que situação cada uma é utilizada?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">3</div>
+      <span class="question-area eletrica">Elétrica</span>
+    </div>
+    <p class="question-text">O que é fator de potência? Por que ele é importante em instalações elétricas industriais e offshore?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">4</div>
+      <span class="question-area eletrica">Elétrica</span>
+    </div>
+    <p class="question-text">Explique o funcionamento de um transformador. Qual sua função em um sistema de distribuição de energia subsea?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <!-- SEÇÃO 2: ELETRÔNICA -->
+  <h2 class="section-title">🔌 Eletrônica</h2>
+  <p class="section-desc">Componentes eletrônicos, lógica digital e instrumentação — essenciais para o dia a dia do ROV.</p>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">5</div>
+      <span class="question-area eletronica">Eletrônica</span>
+    </div>
+    <p class="question-text">Qual a função de um diodo em um circuito eletrônico? Explique a diferença entre um diodo em polarização direta e reversa.</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">6</div>
+      <span class="question-area eletronica">Eletrônica</span>
+    </div>
+    <p class="question-text">Descreva o que são portas lógicas AND, OR e NOT. Dê a tabela verdade de cada uma.</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">7</div>
+      <span class="question-area eletronica">Eletrônica</span>
+    </div>
+    <p class="question-text">O que é um transistor TJB (Transistor de Junção Bipolar)? Quais são seus terminais e como ele funciona como chave eletrônica?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">8</div>
+      <span class="question-area eletronica">Eletrônica</span>
+    </div>
+    <p class="question-text">Um resistor possui as cores: Vermelho, Violeta, Laranja e Ouro. Qual é o valor da resistência e sua tolerância?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <!-- SEÇÃO 3: MECÂNICA / HIDRÁULICA -->
+  <h2 class="section-title">⚙️ Mecânica e Hidráulica</h2>
+  <p class="section-desc">Sistemas hidráulicos são o coração do ROV. Domine estes conceitos.</p>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">9</div>
+      <span class="question-area mecanica">Mecânica</span>
+    </div>
+    <p class="question-text">Descreva os principais componentes de um sistema hidráulico (bomba, válvulas, atuadores, filtros, reservatório). Qual a função de cada um?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">10</div>
+      <span class="question-area mecanica">Mecânica</span>
+    </div>
+    <p class="question-text">Qual a diferença entre um sistema hidráulico e um sistema pneumático? Cite vantagens e desvantagens de cada um.</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">11</div>
+      <span class="question-area mecanica">Mecânica</span>
+    </div>
+    <p class="question-text">Explique o Princípio de Pascal e como ele é aplicado nos sistemas hidráulicos de um ROV.</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">12</div>
+      <span class="question-area mecanica">Mecânica</span>
+    </div>
+    <p class="question-text">O que é um paquímetro e como se faz uma leitura correta? Qual sua importância na manutenção de equipamentos ROV?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <!-- SEÇÃO 4: CONHECIMENTOS DE ROV -->
+  <h2 class="section-title">🤖 Conhecimentos de ROV</h2>
+  <p class="section-desc">Perguntas sobre operação, componentes e procedimentos do veículo operado remotamente.</p>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">13</div>
+      <span class="question-area rov">ROV</span>
+    </div>
+    <p class="question-text">Quais são os principais componentes de um sistema ROV? Descreva a função do umbilical, A-frame, winch e unidade de controle topside.</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">14</div>
+      <span class="question-area rov">ROV</span>
+    </div>
+    <p class="question-text">Quais são as verificações (checklist) que devem ser feitas antes do lançamento (pré-dive) de um ROV?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">15</div>
+      <span class="question-area rov">ROV</span>
+    </div>
+    <p class="question-text">Qual a diferença entre ROV de Classe I, II e III (trabalho)? Em que tipo de operação cada um é mais utilizado?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">16</div>
+      <span class="question-area rov">ROV</span>
+    </div>
+    <p class="question-text">O que é o TMS (Tether Management System)? Qual sua importância durante as operações subsea?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <!-- SEÇÃO 5: SEGURANÇA OFFSHORE -->
+  <h2 class="section-title">🛡️ Segurança Offshore</h2>
+  <p class="section-desc">Conhecimentos de HSE, procedimentos de emergência e segurança no trabalho embarcado.</p>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">17</div>
+      <span class="question-area seguranca">Segurança</span>
+    </div>
+    <p class="question-text">O que é SWL (Safe Working Load)? Como você verifica se um equipamento de içamento está dentro do limite seguro?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">18</div>
+      <span class="question-area seguranca">Segurança</span>
+    </div>
+    <p class="question-text">Cite pelo menos 5 EPIs (Equipamentos de Proteção Individual) obrigatórios para trabalho em plataforma offshore.</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">19</div>
+      <span class="question-area seguranca">Segurança</span>
+    </div>
+    <p class="question-text">O que é uma PT (Permissão de Trabalho)? Por que ela é essencial antes de qualquer manutenção em equipamentos ROV?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <div class="question">
+    <div class="question-header">
+      <div class="question-number">20</div>
+      <span class="question-area seguranca">Segurança</span>
+    </div>
+    <p class="question-text">Descreva o procedimento correto em caso de "homem ao mar" em uma embarcação offshore. Quais são os passos imediatos?</p>
+    <div class="answer-space">Escreva sua resposta aqui...</div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- GABARITO COMENTADO -->
+  <!-- ============================================ -->
+  <div class="answer-key">
+    <h2 class="section-title">📝 Gabarito Comentado</h2>
+    <p class="section-desc">Confira suas respostas. Não se preocupe se errou — o importante é aprender!</p>
+
+    <div class="answer-item">
+      <strong>Questão 1 — Lei de Ohm</strong>
+      <p>A Lei de Ohm estabelece que V = I × R (Tensão = Corrente × Resistência). Em um ROV, se um motor opera a 24V e consome 2A, a resistência do circuito é 12Ω. Isso é fundamental para dimensionar cabos e proteger circuitos contra sobrecarga.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 2 — Estrela vs Triângulo</strong>
+      <p><strong>Estrela (Y):</strong> Tensão de fase = Tensão de linha ÷ √3. Usada na partida de motores (menor corrente de arranque). <strong>Triângulo (Δ):</strong> Tensão de fase = Tensão de linha. Usada em operação normal (maior torque). A partida estrela-triângulo é comum em motores de bombas hidráulicas de ROV para reduzir picos de corrente.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 3 — Fator de Potência</strong>
+      <p>É a razão entre potência ativa (W) e potência aparente (VA). Varia de 0 a 1. Fator baixo significa desperdício de energia e sobrecarga nos cabos. Em plataformas offshore, manter o fator de potência acima de 0,92 é obrigatório para evitar multas e proteger equipamentos.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 4 — Transformador</strong>
+      <p>Funciona por indução eletromagnética: uma bobina primária cria campo magnético que induz tensão na bobina secundária. Em sistemas subsea, transformadores convertem alta tensão do umbilical (ex: 3.000V) para tensões de trabalho do ROV (440V, 220V, 24V).</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 5 — Diodo</strong>
+      <p>O diodo permite passagem de corrente em um único sentido. <strong>Polarização direta:</strong> corrente flui (ânodo positivo). <strong>Polarização reversa:</strong> corrente bloqueada. Usado em retificadores que convertem AC para DC nos sistemas de alimentação do ROV.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 6 — Portas Lógicas</strong>
+      <p><strong>AND:</strong> Saída 1 somente se TODAS entradas forem 1. <strong>OR:</strong> Saída 1 se QUALQUER entrada for 1. <strong>NOT:</strong> Inverte a entrada (0→1, 1→0). Estas portas são a base dos sistemas de controle digital do ROV (PLCs e controladores).</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 7 — Transistor TJB</strong>
+      <p>Possui 3 terminais: Base (B), Coletor (C) e Emissor (E). Pode ser NPN ou PNP. Como chave: uma pequena corrente na Base permite passagem de corrente maior entre Coletor e Emissor. Usado em circuitos de amplificação e comutação nos sistemas eletrônicos do ROV.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 8 — Código de Cores do Resistor</strong>
+      <p>Vermelho=2, Violeta=7, Laranja=×1.000, Ouro=±5%. Resultado: <strong>27.000Ω (27kΩ) com tolerância de ±5%</strong>. Saber ler o código de cores é essencial para manutenção de placas eletrônicas do ROV.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 9 — Componentes Hidráulicos</strong>
+      <p><strong>Bomba:</strong> converte energia mecânica em pressão hidráulica. <strong>Válvulas:</strong> controlam direção, vazão e pressão do fluido. <strong>Atuadores:</strong> cilindros ou motores que realizam o trabalho (garras, braços). <strong>Filtros:</strong> removem impurezas do óleo. <strong>Reservatório:</strong> armazena o fluido e permite dissipação de calor.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 10 — Hidráulico vs Pneumático</strong>
+      <p><strong>Hidráulico:</strong> usa óleo (incompressível) → maior força, controle preciso, porém mais pesado e risco de vazamento. <strong>Pneumático:</strong> usa ar comprimido (compressível) → mais leve, limpo, porém menos força e controle menos preciso. ROVs usam sistemas hidráulicos pela necessidade de alta força em profundidade.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 11 — Princípio de Pascal</strong>
+      <p>"A pressão aplicada a um fluido confinado é transmitida igualmente em todas as direções." No ROV, isso permite que uma bomba hidráulica na superfície gere força multiplicada nos atuadores subsea, permitindo que garras e braços manipuladores exerçam grandes forças.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 12 — Paquímetro</strong>
+      <p>Instrumento de medição de precisão (até 0,02mm). Possui escala principal e nônio (vernier). Leitura: valor da escala principal + valor do nônio onde as linhas coincidem. Usado para medir diâmetros de mangueiras, o-rings, peças de reposição e verificar tolerâncias em manutenção preventiva do ROV.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 13 — Componentes do Sistema ROV</strong>
+      <p><strong>Umbilical:</strong> cabo que conecta o ROV à superfície (transmite energia, dados e fibra óptica). <strong>A-frame:</strong> estrutura de lançamento/recolhimento do ROV. <strong>Winch:</strong> guincho que controla o comprimento do umbilical. <strong>Controle topside:</strong> cabine com monitores, joysticks e computadores onde o piloto opera o ROV.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 14 — Checklist Pré-dive</strong>
+      <p>1) Verificar sistemas hidráulicos (nível de óleo, vazamentos). 2) Testar propulsores (thruster). 3) Verificar câmeras e iluminação. 4) Testar comunicação com topside. 5) Checar sensores (profundidade, heading, sonar). 6) Verificar ferramentas de trabalho. 7) Testar sistema de emergência. 8) Confirmar condições climáticas e de mar.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 15 — Classes de ROV</strong>
+      <p><strong>Classe I:</strong> Observação pura — pequenos, apenas câmeras (inspeções visuais). <strong>Classe II:</strong> Observação com payload — sensores adicionais e pequenas ferramentas. <strong>Classe III (Trabalho):</strong> Grande porte, braços manipuladores, alta potência hidráulica — usado em construção, reparo e manutenção subsea. É neste que atuam os pilotos trainee.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 16 — TMS</strong>
+      <p>O TMS (Tether Management System) é a "garagem" do ROV. Ele desce acoplado ao ROV até próximo ao fundo do mar e gerencia o cabo tether (cabo fino que conecta ROV ao TMS). Protege o umbilical principal contra correntes e permite maior liberdade de movimento ao ROV durante as operações.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 17 — SWL</strong>
+      <p>SWL (Safe Working Load) é a carga máxima segura que um equipamento de içamento suporta. Deve estar gravada/estampada no equipamento. Verificação: 1) Ler a marcação do SWL. 2) Calcular o peso da carga. 3) Nunca exceder o SWL. 4) Inspecionar visualmente o equipamento (desgaste, corrosão, deformação). 5) Verificar certificado de teste válido.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 18 — EPIs Offshore</strong>
+      <p>1) <strong>Capacete</strong> (hard hat) com jugular. 2) <strong>Óculos de proteção</strong> (safety glasses). 3) <strong>Luvas</strong> (adequadas à atividade). 4) <strong>Bota de segurança</strong> com biqueira de aço. 5) <strong>Macacão/Coverall</strong> anti-chama. Outros: protetor auricular, colete salva-vidas (ao ar livre), cinto de segurança (trabalho em altura).</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 19 — Permissão de Trabalho</strong>
+      <p>A PT é um documento formal que autoriza a execução de atividades de risco. Garante que: riscos foram avaliados, medidas de segurança implementadas, equipe treinada e áreas isoladas. Sem PT, nenhuma manutenção deve ser iniciada. Tipos comuns: trabalho a quente, trabalho em altura, espaço confinado, elétrica.</p>
+    </div>
+
+    <div class="answer-item">
+      <strong>Questão 20 — Homem ao Mar</strong>
+      <p>1) Gritar <strong>"HOMEM AO MAR"</strong> e indicar o lado (bombordo/boreste). 2) Jogar boia salva-vidas imediatamente. 3) Não perder a vítima de vista. 4) Acionar alarme geral. 5) A embarcação reduz velocidade e inicia manobra de resgate (Williamson Turn). 6) Preparar equipe de resgate e equipamentos. 7) Comunicar via rádio a todas as embarcações próximas.</p>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <strong>VAGA BLINDADA ROV</strong> — Material Exclusivo para Alunos<br>
+    © 2025 Leandro Pinheiro • Todos os direitos reservados<br>
+    <em>Para salvar como PDF: Ctrl+P → "Salvar como PDF"</em>
+  </div>
+
+</div>
+
+</body>
+</html>
