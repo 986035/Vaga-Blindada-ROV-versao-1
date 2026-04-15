@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #1a2332; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  body { background: #1a2332; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: flex; flex-wrap: wrap; gap: 30px; padding: 30px; justify-content: center; }
   
   .thumbnail {
-    width: 800px;
-    height: 450px;
+    width: 320px;
+    height: 480px;
     position: relative;
     overflow: hidden;
-    border-radius: 16px;
-    margin: 40px auto;
+    border-radius: 12px;
+    flex-shrink: 0;
   }
   
   .thumbnail img {
@@ -27,147 +27,145 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 40px;
+    padding: 24px;
   }
   
-  /* Module 1 - Blue */
-  .overlay-1 { background: linear-gradient(180deg, rgba(26,35,50,0.2) 0%, rgba(26,35,50,0.5) 40%, rgba(52,152,219,0.85) 100%); }
-  /* Module 2 - Green */
-  .overlay-2 { background: linear-gradient(180deg, rgba(26,35,50,0.2) 0%, rgba(26,35,50,0.5) 40%, rgba(46,204,113,0.85) 100%); }
-  /* Module 3 - Purple */
-  .overlay-3 { background: linear-gradient(180deg, rgba(26,35,50,0.2) 0%, rgba(26,35,50,0.5) 40%, rgba(155,89,182,0.85) 100%); }
-  /* Module 4 - Orange */
-  .overlay-4 { background: linear-gradient(180deg, rgba(26,35,50,0.2) 0%, rgba(26,35,50,0.5) 40%, rgba(230,126,34,0.85) 100%); }
-  /* Bonus - Gold */
-  .overlay-5 { background: linear-gradient(180deg, rgba(26,35,50,0.2) 0%, rgba(26,35,50,0.5) 40%, rgba(241,196,15,0.85) 100%); }
+  .overlay-1 { background: linear-gradient(180deg, rgba(26,35,50,0.1) 0%, rgba(26,35,50,0.3) 30%, rgba(52,152,219,0.92) 100%); }
+  .overlay-2 { background: linear-gradient(180deg, rgba(26,35,50,0.1) 0%, rgba(26,35,50,0.3) 30%, rgba(46,204,113,0.92) 100%); }
+  .overlay-3 { background: linear-gradient(180deg, rgba(26,35,50,0.1) 0%, rgba(26,35,50,0.3) 30%, rgba(155,89,182,0.92) 100%); }
+  .overlay-4 { background: linear-gradient(180deg, rgba(26,35,50,0.1) 0%, rgba(26,35,50,0.3) 30%, rgba(230,126,34,0.92) 100%); }
+  .overlay-5 { background: linear-gradient(180deg, rgba(26,35,50,0.1) 0%, rgba(26,35,50,0.3) 30%, rgba(241,196,15,0.92) 100%); }
   
   .module-badge {
     display: inline-block;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 13px;
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
     width: fit-content;
   }
   
-  .badge-1 { background: rgba(52,152,219,0.9); color: white; }
-  .badge-2 { background: rgba(46,204,113,0.9); color: white; }
-  .badge-3 { background: rgba(155,89,182,0.9); color: white; }
-  .badge-4 { background: rgba(230,126,34,0.9); color: white; }
-  .badge-5 { background: rgba(241,196,15,0.95); color: #1a2332; }
+  .badge-1 { background: rgba(255,255,255,0.25); color: white; }
+  .badge-2 { background: rgba(255,255,255,0.25); color: white; }
+  .badge-3 { background: rgba(255,255,255,0.25); color: white; }
+  .badge-4 { background: rgba(255,255,255,0.25); color: white; }
+  .badge-5 { background: rgba(0,0,0,0.3); color: #f1c40f; }
   
   .module-title {
-    font-size: 36px;
-    font-weight: 700;
+    font-size: 26px;
+    font-weight: 800;
     color: white;
-    line-height: 1.2;
-    margin-bottom: 8px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    line-height: 1.15;
+    margin-bottom: 6px;
+    text-shadow: 1px 2px 6px rgba(0,0,0,0.5);
   }
   
   .module-subtitle {
-    font-size: 18px;
-    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
     font-style: italic;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 12px;
   }
   
   .lesson-count {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: rgba(0,0,0,0.6);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0,0,0,0.4);
     color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 14px;
+    font-size: 11px;
     font-weight: 600;
+    width: fit-content;
     backdrop-filter: blur(4px);
   }
   
   .logo-watermark {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    color: rgba(255,255,255,0.8);
-    font-size: 14px;
+    top: 16px;
+    left: 16px;
+    color: rgba(255,255,255,0.7);
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
   }
   
   .star-badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 50px;
+    top: 12px;
+    right: 12px;
+    font-size: 36px;
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
   }
 </style>
 </head>
 <body>
 
-<!-- Thumbnail 1: O Mapa da Mina -->
+<!-- Thumbnail 1 -->
 <div class="thumbnail" id="thumb1">
-  <img src="https://images.pexels.com/photos/3192662/pexels-photo-3192662.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Offshore platform">
+  <img src="https://images.pexels.com/photos/3192662/pexels-photo-3192662.jpeg?auto=compress&cs=tinysrgb&w=640" alt="">
   <div class="overlay overlay-1">
     <div class="logo-watermark">VAGA BLINDADA ROV</div>
-    <div class="lesson-count">3 Aulas</div>
     <div class="module-badge badge-1">Módulo 1</div>
-    <div class="module-title">O Mapa da Mina</div>
+    <div class="module-title">O Mapa<br>da Mina</div>
     <div class="module-subtitle">Visão de Campo</div>
+    <div class="lesson-count">▶ 3 Aulas</div>
   </div>
 </div>
 
-<!-- Thumbnail 2: O Perfil de Elite -->
+<!-- Thumbnail 2 -->
 <div class="thumbnail" id="thumb2">
-  <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&h=675&fit=crop" alt="Professional engineer">
+  <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=640&h=960&fit=crop" alt="">
   <div class="overlay overlay-2">
     <div class="logo-watermark">VAGA BLINDADA ROV</div>
-    <div class="lesson-count">3 Aulas</div>
     <div class="module-badge badge-2">Módulo 2</div>
-    <div class="module-title">O Perfil de Elite</div>
+    <div class="module-title">O Perfil<br>de Elite</div>
     <div class="module-subtitle">O que o RH não fala</div>
+    <div class="lesson-count">▶ 3 Aulas</div>
   </div>
 </div>
 
-<!-- Thumbnail 3: Blindagem de Candidatura -->
+<!-- Thumbnail 3 -->
 <div class="thumbnail" id="thumb3">
-  <img src="https://images.unsplash.com/photo-1698047681432-006d2449c631?w=1200&h=675&fit=crop" alt="Resume review">
+  <img src="https://images.unsplash.com/photo-1698047681432-006d2449c631?w=640&h=960&fit=crop" alt="">
   <div class="overlay overlay-3">
     <div class="logo-watermark">VAGA BLINDADA ROV</div>
-    <div class="lesson-count">3 Aulas</div>
     <div class="module-badge badge-3">Módulo 3</div>
     <div class="module-title">Blindagem de Candidatura</div>
     <div class="module-subtitle">A Prática</div>
+    <div class="lesson-count">▶ 3 Aulas</div>
   </div>
 </div>
 
-<!-- Thumbnail 4: Diferenciação e Vantagem Competitiva -->
+<!-- Thumbnail 4 -->
 <div class="thumbnail" id="thumb4">
-  <img src="https://images.unsplash.com/photo-1690508313456-bf8c851e8319?w=1200&h=675&fit=crop" alt="Competitive advantage">
+  <img src="https://images.unsplash.com/photo-1690508313456-bf8c851e8319?w=640&h=960&fit=crop" alt="">
   <div class="overlay overlay-4">
     <div class="logo-watermark">VAGA BLINDADA ROV</div>
-    <div class="lesson-count">3 Aulas</div>
     <div class="module-badge badge-4">Módulo 4</div>
-    <div class="module-title">Diferenciação e<br>Vantagem Competitiva</div>
+    <div class="module-title">Diferenciação e Vantagem</div>
     <div class="module-subtitle">Seu Diferencial</div>
+    <div class="lesson-count">▶ 3 Aulas</div>
   </div>
 </div>
 
-<!-- Thumbnail 5: Arsenal do Candidato (BÔNUS) -->
+<!-- Thumbnail 5 -->
 <div class="thumbnail" id="thumb5">
-  <img src="https://images.unsplash.com/photo-1759847527437-a548715aef7a?w=1200&h=675&fit=crop" alt="Tools arsenal">
+  <img src="https://images.unsplash.com/photo-1759847527437-a548715aef7a?w=640&h=960&fit=crop" alt="">
   <div class="overlay overlay-5">
     <div class="logo-watermark">VAGA BLINDADA ROV</div>
     <div class="star-badge">⭐</div>
     <div class="module-badge badge-5">BÔNUS</div>
     <div class="module-title">Arsenal do Candidato</div>
     <div class="module-subtitle">Módulo BÔNUS</div>
+    <div class="lesson-count">▶ 2 Itens</div>
   </div>
 </div>
 
