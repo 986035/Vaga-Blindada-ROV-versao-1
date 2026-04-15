@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a2332; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  
+  .thumbnail {
+    width: 800px;
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    margin: 40px auto;
+  }
+  
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+  }
+  
+  /* Module 1 - Blue */
+  .overlay-1 { background: linear-gradient(180deg, rgba(26,35,50,0.2) 0%, rgba(26,35,50,0.5) 40%, rgba(52,152,219,0.85) 100%); }
+  /* Module 2 - Green */
+  .overlay-2 { background: linear-gradient(180deg, rgba(26,35,50,0.2) 0%, rgba(26,35,50,0.5) 40%, rgba(46,204,113,0.85) 100%); }
+  /* Module 3 - Purple */
+  .overlay-3 { background: linear-gradient(180deg, rgba(26,35,50,0.2) 0%, rgba(26,35,50,0.5) 40%, rgba(155,89,182,0.85) 100%); }
+  /* Module 4 - Orange */
+  .overlay-4 { background: linear-gradient(180deg, rgba(26,35,50,0.2) 0%, rgba(26,35,50,0.5) 40%, rgba(230,126,34,0.85) 100%); }
+  /* Bonus - Gold */
+  .overlay-5 { background: linear-gradient(180deg, rgba(26,35,50,0.2) 0%, rgba(26,35,50,0.5) 40%, rgba(241,196,15,0.85) 100%); }
+  
+  .module-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+  
+  .badge-1 { background: rgba(52,152,219,0.9); color: white; }
+  .badge-2 { background: rgba(46,204,113,0.9); color: white; }
+  .badge-3 { background: rgba(155,89,182,0.9); color: white; }
+  .badge-4 { background: rgba(230,126,34,0.9); color: white; }
+  .badge-5 { background: rgba(241,196,15,0.95); color: #1a2332; }
+  
+  .module-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  }
+  
+  .module-subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  }
+  
+  .lesson-count {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+  }
+  
+  .logo-watermark {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  }
+  
+  .star-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 50px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+  }
+</style>
+</head>
+<body>
+
+<!-- Thumbnail 1: O Mapa da Mina -->
+<div class="thumbnail" id="thumb1">
+  <img src="https://images.pexels.com/photos/3192662/pexels-photo-3192662.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Offshore platform">
+  <div class="overlay overlay-1">
+    <div class="logo-watermark">VAGA BLINDADA ROV</div>
+    <div class="lesson-count">3 Aulas</div>
+    <div class="module-badge badge-1">Módulo 1</div>
+    <div class="module-title">O Mapa da Mina</div>
+    <div class="module-subtitle">Visão de Campo</div>
+  </div>
+</div>
+
+<!-- Thumbnail 2: O Perfil de Elite -->
+<div class="thumbnail" id="thumb2">
+  <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&h=675&fit=crop" alt="Professional engineer">
+  <div class="overlay overlay-2">
+    <div class="logo-watermark">VAGA BLINDADA ROV</div>
+    <div class="lesson-count">3 Aulas</div>
+    <div class="module-badge badge-2">Módulo 2</div>
+    <div class="module-title">O Perfil de Elite</div>
+    <div class="module-subtitle">O que o RH não fala</div>
+  </div>
+</div>
+
+<!-- Thumbnail 3: Blindagem de Candidatura -->
+<div class="thumbnail" id="thumb3">
+  <img src="https://images.unsplash.com/photo-1698047681432-006d2449c631?w=1200&h=675&fit=crop" alt="Resume review">
+  <div class="overlay overlay-3">
+    <div class="logo-watermark">VAGA BLINDADA ROV</div>
+    <div class="lesson-count">3 Aulas</div>
+    <div class="module-badge badge-3">Módulo 3</div>
+    <div class="module-title">Blindagem de Candidatura</div>
+    <div class="module-subtitle">A Prática</div>
+  </div>
+</div>
+
+<!-- Thumbnail 4: Diferenciação e Vantagem Competitiva -->
+<div class="thumbnail" id="thumb4">
+  <img src="https://images.unsplash.com/photo-1690508313456-bf8c851e8319?w=1200&h=675&fit=crop" alt="Competitive advantage">
+  <div class="overlay overlay-4">
+    <div class="logo-watermark">VAGA BLINDADA ROV</div>
+    <div class="lesson-count">3 Aulas</div>
+    <div class="module-badge badge-4">Módulo 4</div>
+    <div class="module-title">Diferenciação e<br>Vantagem Competitiva</div>
+    <div class="module-subtitle">Seu Diferencial</div>
+  </div>
+</div>
+
+<!-- Thumbnail 5: Arsenal do Candidato (BÔNUS) -->
+<div class="thumbnail" id="thumb5">
+  <img src="https://images.unsplash.com/photo-1759847527437-a548715aef7a?w=1200&h=675&fit=crop" alt="Tools arsenal">
+  <div class="overlay overlay-5">
+    <div class="logo-watermark">VAGA BLINDADA ROV</div>
+    <div class="star-badge">⭐</div>
+    <div class="module-badge badge-5">BÔNUS</div>
+    <div class="module-title">Arsenal do Candidato</div>
+    <div class="module-subtitle">Módulo BÔNUS</div>
+  </div>
+</div>
+
+</body>
+</html>
