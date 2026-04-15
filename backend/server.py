@@ -104,7 +104,7 @@ course_data = {
         {
             "id": 3,
             "title": "Blindagem de Candidatura",
-            "subtitle": "A Prática",
+            "subtitle": "Blindagem Total do seu Currículo",
             "icon": "shield",
             "color": "purple",
             "lessons": [
