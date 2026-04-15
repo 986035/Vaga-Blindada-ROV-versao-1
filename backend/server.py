@@ -56,8 +56,8 @@ course_data = {
     "product": {
         "name": "VAGA BLINDADA ROV",
         "subtitle": "Tudo o que você precisa para proteger sua vaga dos concorrentes. O guia completo para conquistar uma vaga de trainee de ROV no mercado offshore.",
-        "price": "R$ 297,00",
-        "oldPrice": "R$ 497,00"
+        "price": "R$ 97,00",
+        "oldPrice": "R$ 297,00"
     },
     
     "hero": {

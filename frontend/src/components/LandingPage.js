@@ -217,6 +217,17 @@ const LandingPage = () => {
               )}
             </div>
 
+            {/* Banner Promocional de Lançamento */}
+            <div className="promo-banner">
+              <div className="promo-icon">⚠️</div>
+              <div className="promo-content">
+                <h3 className="promo-title">AVISO: Valor Promocional de Lançamento</h3>
+                <p className="promo-text">
+                  O treinamento completo tem o valor de <span className="promo-old-price">R$ 297,00</span>, mas você pode garantir seu acesso ao <strong>Plano de Entrada</strong> hoje por apenas <strong className="promo-new-price">R$ 97,00</strong>. Aproveite enquanto esta condição de lançamento está disponível!
+                </p>
+              </div>
+            </div>
+
             {/* Testimonials Section - Cards with Photos */}
             <div className="testimonials-section">
               <h3 className="testimonials-title">
