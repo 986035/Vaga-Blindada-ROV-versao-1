@@ -10,7 +10,6 @@ import LoadingSpinner from "./LoadingSpinner";
 
 const LandingPage = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
   const [expandedModules, setExpandedModules] = useState({});
@@ -138,11 +137,6 @@ const LandingPage = () => {
     document.getElementById('benefits').scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleWatchVideo = () => {
-    trackEvent('video_play_attempt', 'hero');
-    setIsVideoPlaying(true);
-  };
-
   // Show loading spinner while fetching data
   if (isLoading) {
     return <LoadingSpinner />;
@@ -185,36 +179,18 @@ const LandingPage = () => {
               Descubra o passo a passo estratégico que realmente prepara técnicos para conquistar a vaga.
             </p>
 
-            {/* Video Section */}
+            {/* Video Section - Auto-play muted */}
             <div className="hero-video-container">
-              {!isVideoPlaying ? (
-                <div className="video-placeholder" onClick={handleWatchVideo}>
-                  <img 
-                    src="https://img.youtube.com/vi/t2WO4HhINIE/maxresdefault.jpg" 
-                    alt="Vídeo de apresentação do curso Vaga Blindada ROV"
-                    className="video-thumbnail"
-                  />
-                  <div className="video-play-button">
-                    <PlayCircle size={80} />
-                  </div>
-                  <div className="video-overlay">
-                    <span className="video-text">
-                      {data.hero?.videoText || "▶ Assista ao vídeo de apresentação"}
-                    </span>
-                  </div>
-                </div>
-              ) : (
-                <div className="video-player-wrapper">
-                  <iframe
-                    src="https://www.youtube.com/embed/t2WO4HhINIE?autoplay=1&rel=0"
-                    title="Vaga Blindada ROV - Apresentação"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="video-iframe"
-                  ></iframe>
-                </div>
-              )}
+              <div className="video-player-wrapper">
+                <iframe
+                  src="https://www.youtube.com/embed/tjMt8jc2XoE?autoplay=1&mute=1&rel=0&playsinline=1"
+                  title="Vaga Blindada ROV - Apresentação"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="video-iframe"
+                ></iframe>
+              </div>
             </div>
 
             {/* Banner Promocional de Lançamento */}
@@ -317,19 +293,22 @@ const LandingPage = () => {
               </div>
             </div>
             
-            {/* Important Information Box - Below Video */}
-            <div className="info-box-container">
-              <div className="info-box">
-                <div className="info-icon">💡</div>
-                <div className="info-content">
-                  <strong className="info-title">INFORMAÇÃO IMPORTANTE:</strong>
-                  <p className="info-text">
-                    Você <strong>NÃO precisa gastar R$ 15.000+</strong> em cursos técnicos de ROV! 
-                    As empresas offshore fornecem treinamento completo ao contratar. 
-                    Este curso te prepara para <strong>CONSEGUIR a vaga!</strong>
-                  </p>
-                </div>
-              </div>
+            {/* Checkout CTA Button - Direct to Kiwify */}
+            <div className="checkout-cta-container">
+              <a
+                href="https://pay.kiwify.com.br/pkz4J3e"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="checkout-cta-button"
+                onClick={() => trackEvent('checkout_click', 'hero_video_cta')}
+              >
+                <Shield size={22} className="checkout-cta-icon" />
+                <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
+                <ArrowRight size={22} className="checkout-cta-arrow" />
+              </a>
+              <p className="checkout-cta-subtext">
+                ✅ Acesso imediato &nbsp;•&nbsp; 🔒 Pagamento 100% seguro via Kiwify
+              </p>
             </div>
             
             <div className="hero-actions">

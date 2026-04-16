@@ -173,5 +173,7 @@ test_plan:
 agent_communication:
     - agent: "main"
       message: "Updated backend course_data with 5 modules, real benefits, stats. Frontend has new modules section with expandable cards. Backend test needed for /api/course/info returning modules array."
+    - agent: "main"
+      message: "Video replaced from t2WO4HhINIE to tjMt8jc2XoE with autoplay+mute (auto-starts on page load, user clicks to unmute). Removed video placeholder/thumbnail + handleWatchVideo function + isVideoPlaying state. Replaced info-box ('INFORMAÇÃO IMPORTANTE') with prominent green checkout CTA button ('QUERO GARANTIR A MINHA VAGA') linking to https://pay.kiwify.com.br/pkz4J3e (target=_blank), with pulse animation and shine effect. Added .checkout-cta-* CSS classes. Video embeddability verified via YouTube oEmbed API (HTTP 200)."
     - agent: "testing"
       message: "✅ BACKEND TESTING COMPLETE: All API endpoints working correctly. GET /api/course/info verified with exact structure requirements (5 modules, 4 stats, 6 benefits, checkout_url, sections). POST /api/leads/capture and GET /api/ also functioning properly. Created comprehensive backend_test.py for future testing. No critical issues found."
