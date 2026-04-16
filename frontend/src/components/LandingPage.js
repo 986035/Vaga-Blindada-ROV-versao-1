@@ -230,13 +230,24 @@ const LandingPage = () => {
               </div>
             </div>
 
-            {/* Hero CTA Box - Highlighted checkout box right below the video */}
+            {/* Banner Promocional de Lançamento — logo abaixo do vídeo */}
+            <div className="promo-banner">
+              <div className="promo-icon">⚠️</div>
+              <div className="promo-content">
+                <h3 className="promo-title">AVISO: Valor Promocional de Lançamento</h3>
+                <p className="promo-text">
+                  O treinamento completo tem o valor de <span className="promo-old-price">R$ 297,00</span>, mas você pode garantir seu acesso ao <strong>Plano de Entrada</strong> hoje por apenas <strong className="promo-new-price">R$ 97,00</strong>. Aproveite enquanto esta condição de lançamento está disponível!
+                </p>
+              </div>
+            </div>
+
+            {/* Hero CTA Box - Highlighted checkout box */}
             <div className="hero-cta-section">
               <div className="hero-cta-box">
                 <div className="hero-cta-icon">🎯</div>
                 <h3 className="hero-cta-title">Garanta sua Vaga Agora</h3>
                 <p className="hero-cta-subtitle">
-                  Acesso imediato ao treinamento completo.<br />
+                  Acesso imediato ao guia.<br />
                   <strong>Plano de Entrada por apenas R$ 97,00</strong>
                 </p>
                 <a
@@ -252,17 +263,6 @@ const LandingPage = () => {
                 </a>
                 <p className="hero-cta-safety">
                   ✅ Acesso imediato &nbsp;•&nbsp; 🔒 Pagamento 100% seguro via Kiwify
-                </p>
-              </div>
-            </div>
-
-            {/* Banner Promocional de Lançamento */}
-            <div className="promo-banner">
-              <div className="promo-icon">⚠️</div>
-              <div className="promo-content">
-                <h3 className="promo-title">AVISO: Valor Promocional de Lançamento</h3>
-                <p className="promo-text">
-                  O treinamento completo tem o valor de <span className="promo-old-price">R$ 297,00</span>, mas você pode garantir seu acesso ao <strong>Plano de Entrada</strong> hoje por apenas <strong className="promo-new-price">R$ 97,00</strong>. Aproveite enquanto esta condição de lançamento está disponível!
                 </p>
               </div>
             </div>
