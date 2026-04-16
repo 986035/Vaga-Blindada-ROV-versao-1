@@ -10,8 +10,6 @@ import LoadingSpinner from "./LoadingSpinner";
 
 const LandingPage = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [emailSubmitted, setEmailSubmitted] = useState(false);
-  const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
   const [expandedModules, setExpandedModules] = useState({});
   const { courseData, isLoading, error } = useCourseInfo();
   
@@ -67,48 +65,86 @@ const LandingPage = () => {
   const { createCheckoutSession, isProcessing } = useCheckout();
   const { trackEvent } = useAnalytics();
 
-  // Link do Telegram para lista de espera
+  // Link do Telegram para lista de espera (fallback se não tiver Kiwify URL)
   const telegramLink = "https://t.me/+UoeYC9QlR9I2MGM5";
-
-  // Função para enviar email ao MailerLite
-  const handleEmailSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmittingEmail(true);
-    
-    const form = e.target;
-    const email = form.elements['fields[email]'].value;
-    
-    try {
-      await fetch('https://assets.mailerlite.com/jsonp/2120972/forms/179669314127791407/subscribe', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          'fields[email]': email,
-          'ml-submit': '1',
-          'anticsrf': 'true'
-        })
-      });
-      
-      // Sempre mostrar sucesso (no-cors não retorna resposta)
-      setEmailSubmitted(true);
-      trackEvent('email_capture', 'checklist');
-    } catch (error) {
-      console.error('Error:', error);
-      // Mesmo com erro, tenta mostrar sucesso pois no-cors não confirma
-      setEmailSubmitted(true);
-    } finally {
-      setIsSubmittingEmail(false);
-    }
-  };
 
   useEffect(() => {
     setIsVisible(true);
     // Track page view
     trackEvent('page_view', 'landing_page');
   }, [trackEvent]);
+
+  // YouTube IFrame API — prevents Chrome's 2x fast-forward at start by delaying playback
+  // until the video has buffered. We load the API script once and start playback
+  // ~1.5s after the player reports ready.
+  useEffect(() => {
+    let player;
+    let playTimeout;
+    let pollInterval;
+
+    const initPlayer = () => {
+      const iframeEl = document.getElementById('hero-yt-player');
+      if (!iframeEl || !window.YT || !window.YT.Player) return false;
+      try {
+        player = new window.YT.Player('hero-yt-player', {
+          events: {
+            onReady: (event) => {
+              // Allow YouTube to buffer initial frames before starting.
+              // This avoids Chrome "fast-forwarding" through missed frames.
+              playTimeout = setTimeout(() => {
+                try {
+                  event.target.mute();
+                  event.target.playVideo();
+                } catch (err) {
+                  // silently ignore
+                }
+              }, 1500);
+            },
+            onStateChange: (event) => {
+              // Safety: if playback rate got altered, force back to 1
+              if (event.data === window.YT.PlayerState.PLAYING) {
+                try {
+                  if (event.target.getPlaybackRate && event.target.getPlaybackRate() !== 1) {
+                    event.target.setPlaybackRate(1);
+                  }
+                } catch (err) { /* noop */ }
+              }
+            }
+          }
+        });
+      } catch (err) {
+        // noop
+      }
+      return true;
+    };
+
+    // Inject API script if not present
+    if (!window.YT || !window.YT.Player) {
+      if (!document.getElementById('youtube-iframe-api-script')) {
+        const tag = document.createElement('script');
+        tag.id = 'youtube-iframe-api-script';
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.body.appendChild(tag);
+      }
+      // Poll until API is ready (handles race conditions with global callback)
+      pollInterval = setInterval(() => {
+        if (window.YT && window.YT.Player) {
+          clearInterval(pollInterval);
+          initPlayer();
+        }
+      }, 150);
+    } else {
+      initPlayer();
+    }
+
+    return () => {
+      if (playTimeout) clearTimeout(playTimeout);
+      if (pollInterval) clearInterval(pollInterval);
+      if (player && typeof player.destroy === 'function') {
+        try { player.destroy(); } catch (err) { /* noop */ }
+      }
+    };
+  }, []);
 
   const handlePurchase = async (source = 'hero') => {
     try {
@@ -179,11 +215,12 @@ const LandingPage = () => {
               Descubra o passo a passo estratégico que realmente prepara técnicos para conquistar a vaga.
             </p>
 
-            {/* Video Section - Auto-play muted */}
+            {/* Video Section - Auto-play with buffer delay to prevent Chrome's 2x fast-forward */}
             <div className="hero-video-container">
               <div className="video-player-wrapper">
                 <iframe
-                  src="https://www.youtube.com/embed/tjMt8jc2XoE?autoplay=1&mute=1&rel=0&playsinline=1"
+                  id="hero-yt-player"
+                  src="https://www.youtube.com/embed/tjMt8jc2XoE?enablejsapi=1&rel=0&playsinline=1&mute=1&modestbranding=1"
                   title="Vaga Blindada ROV - Apresentação"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -233,64 +270,26 @@ const LandingPage = () => {
               </div>
             </div>
             
-            {/* MailerLite Lead Capture Form */}
-            <div className="mailerlite-section">
-              <div className="mailerlite-authority">
-                <p className="authority-line-1">Antes de tentar o processo seletivo de Trainee ROV, veja se você está cometendo algum desses <strong>7 erros</strong>.</p>
-                <p className="authority-line-2">Baixe gratuitamente o checklist estratégico e descubra o que pode estar <strong>eliminando técnicos qualificados</strong> antes mesmo da entrevista.</p>
-              </div>
-              <div className="mailerlite-container">
-                {!emailSubmitted ? (
-                  <>
-                    <div className="mailerlite-icon">📋</div>
-                    <h3 className="mailerlite-title">Checklist Gratuito – Trainee ROV</h3>
-                    <div id="mlb2-37275437" className="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-37275437">
-                      <form 
-                        className="mailerlite-form" 
-                        onSubmit={handleEmailSubmit}
-                      >
-                        <input 
-                          type="email" 
-                          name="fields[email]" 
-                          placeholder="Digite seu melhor email" 
-                          required
-                          className="mailerlite-input"
-                          disabled={isSubmittingEmail}
-                        />
-                        <button type="submit" className="mailerlite-button" disabled={isSubmittingEmail}>
-                          {isSubmittingEmail ? (
-                            <>Enviando...</>
-                          ) : (
-                            <>
-                              <Download size={18} />
-                              QUERO O CHECKLIST GRATUITO
-                            </>
-                          )}
-                        </button>
-                      </form>
-                      <p className="mailerlite-privacy">🔒 Seu email está seguro. Não enviamos spam.</p>
-                    </div>
-                  </>
-                ) : (
-                  <div className="mailerlite-success">
-                    <div className="success-icon">✅</div>
-                    <h3 className="success-title">Checklist Enviado!</h3>
-                    <p className="success-message">
-                      Verifique sua caixa de entrada (e o spam) para baixar o checklist com os <strong>7 erros que eliminam técnicos</strong> no processo seletivo.
-                    </p>
-                    <p className="success-cta">
-                      Enquanto isso, entre no nosso grupo VIP do Telegram:
-                    </p>
-                    <button 
-                      onClick={() => window.open(telegramLink, '_blank')} 
-                      className="success-telegram-btn"
-                    >
-                      <MessageCircle size={18} />
-                      Entrar no Grupo VIP
-                    </button>
-                  </div>
-                )}
-              </div>
+            {/* Checkout CTA Button (Topo) - Direct to Kiwify */}
+            <div className="checkout-cta-container checkout-cta-top">
+              <p className="checkout-cta-headline">
+                <span className="checkout-cta-headline-emoji">🎯</span>
+                Pronto para <strong>conquistar sua vaga de Trainee ROV</strong>?
+              </p>
+              <a
+                href="https://pay.kiwify.com.br/pkz4J3e"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="checkout-cta-button"
+                onClick={() => trackEvent('checkout_click', 'hero_top_cta')}
+              >
+                <Shield size={22} className="checkout-cta-icon" />
+                <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
+                <ArrowRight size={22} className="checkout-cta-arrow" />
+              </a>
+              <p className="checkout-cta-subtext">
+                ✅ Acesso imediato &nbsp;•&nbsp; 🔒 Pagamento 100% seguro via Kiwify
+              </p>
             </div>
             
             {/* Checkout CTA Button - Direct to Kiwify */}

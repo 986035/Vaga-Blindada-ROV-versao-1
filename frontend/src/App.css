@@ -1086,6 +1086,47 @@ body {
   padding: 0 1rem;
 }
 
+/* Top CTA variant (replaces MailerLite box) — with headline for context */
+.checkout-cta-top {
+  margin: 2.5rem auto 2rem;
+  padding: 2rem 1.25rem;
+  background: linear-gradient(
+    135deg,
+    rgba(46, 204, 113, 0.08) 0%,
+    rgba(22, 160, 133, 0.05) 100%
+  );
+  border: 1px solid rgba(46, 204, 113, 0.25);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.checkout-cta-headline {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--text-primary, #ffffff);
+  font-weight: 500;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.checkout-cta-headline strong {
+  color: #2ecc71;
+  font-weight: 700;
+}
+
+.checkout-cta-headline-emoji {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
 .checkout-cta-button {
   position: relative;
   display: inline-flex;
