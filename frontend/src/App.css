@@ -1073,59 +1073,132 @@ body {
 }
 
 /* ============================= */
-/* Checkout CTA Button (substitui info-box) */
+/* Hero CTA Box — beautiful highlighted box directly under the video */
 /* ============================= */
-.checkout-cta-container {
+.hero-cta-section {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  margin: 2rem auto;
-  max-width: 700px;
-  width: 100%;
+  margin: 1.5rem auto 2rem;
   padding: 0 1rem;
 }
 
-/* Top CTA variant (replaces MailerLite box) — with headline for context */
-.checkout-cta-top {
-  margin: 2.5rem auto 2rem;
-  padding: 2rem 1.25rem;
-  background: linear-gradient(
-    135deg,
-    rgba(46, 204, 113, 0.08) 0%,
-    rgba(22, 160, 133, 0.05) 100%
-  );
-  border: 1px solid rgba(46, 204, 113, 0.25);
+.hero-cta-box {
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.18) 0%, rgba(52, 152, 219, 0.18) 100%);
+  border: 2px solid rgba(46, 204, 113, 0.45);
   border-radius: 1.25rem;
-  backdrop-filter: blur(10px);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.checkout-cta-headline {
-  margin: 0 0 1.25rem 0;
-  font-size: 1.05rem;
-  line-height: 1.45;
+  padding: 2rem 1.75rem;
+  max-width: 560px;
+  width: 100%;
   text-align: center;
-  color: var(--text-primary, #ffffff);
-  font-weight: 500;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  box-shadow:
+    0 10px 34px rgba(0, 0, 0, 0.22),
+    0 0 0 4px rgba(46, 204, 113, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
 }
 
-.checkout-cta-headline strong {
+.hero-cta-icon {
+  font-size: 2.6rem;
+  margin-bottom: 0.4rem;
+  line-height: 1;
+}
+
+.hero-cta-title {
+  color: #2ecc71;
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.6rem 0;
+  text-transform: none;
+}
+
+.hero-cta-subtitle {
+  color: #ecf0f1;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  margin: 0 0 1.5rem 0;
+}
+
+.hero-cta-subtitle strong {
+  color: #f1c40f;
+  font-weight: 700;
+}
+
+.hero-cta-box .checkout-cta-button {
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero-cta-safety {
+  margin: 1rem 0 0 0;
+  font-size: 0.82rem;
+  color: rgba(236, 240, 241, 0.75);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 640px) {
+  .hero-cta-box {
+    padding: 1.5rem 1.1rem;
+  }
+  .hero-cta-title {
+    font-size: 1.3rem;
+  }
+  .hero-cta-subtitle {
+    font-size: 0.9rem;
+  }
+  .hero-cta-safety {
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================= */
+/* Strategic mid-page CTA (between instructor & final CTA) */
+/* ============================= */
+.strategic-cta-section {
+  padding: 3.5rem 1rem 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.strategic-cta-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.strategic-cta-text {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-primary, #ffffff);
+}
+
+.strategic-cta-text strong {
   color: #2ecc71;
   font-weight: 700;
 }
 
-.checkout-cta-headline-emoji {
-  font-size: 1.3rem;
-  line-height: 1;
+.strategic-cta-section .checkout-cta-button {
+  max-width: 560px;
+  width: 100%;
 }
+
+@media (max-width: 640px) {
+  .strategic-cta-section {
+    padding: 2.5rem 1rem 2rem;
+  }
+  .strategic-cta-text {
+    font-size: 0.95rem;
+  }
+}
+
+/* ============================= */
+/* Checkout CTA Button (shared style used inside hero-cta-box and strategic-cta-section) */
+/* ============================= */
 
 .checkout-cta-button {
   position: relative;

@@ -13,8 +13,8 @@ const LandingPage = () => {
   const [expandedModules, setExpandedModules] = useState({});
   const { courseData, isLoading, error } = useCourseInfo();
   
-  // Kiwify checkout URL - será substituído pelo link real
-  const kiwifyCheckoutUrl = "";
+  // Kiwify checkout URL
+  const kiwifyCheckoutUrl = "https://pay.kiwify.com.br/pkz4J3e";
 
   // Module icon mapping
   const moduleIcons = {
@@ -230,6 +230,32 @@ const LandingPage = () => {
               </div>
             </div>
 
+            {/* Hero CTA Box - Highlighted checkout box right below the video */}
+            <div className="hero-cta-section">
+              <div className="hero-cta-box">
+                <div className="hero-cta-icon">🎯</div>
+                <h3 className="hero-cta-title">Garanta sua Vaga Agora</h3>
+                <p className="hero-cta-subtitle">
+                  Acesso imediato ao treinamento completo.<br />
+                  <strong>Plano de Entrada por apenas R$ 97,00</strong>
+                </p>
+                <a
+                  href="https://pay.kiwify.com.br/pkz4J3e"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="checkout-cta-button"
+                  onClick={() => trackEvent('checkout_click', 'hero_box_cta')}
+                >
+                  <Shield size={22} className="checkout-cta-icon" />
+                  <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
+                  <ArrowRight size={22} className="checkout-cta-arrow" />
+                </a>
+                <p className="hero-cta-safety">
+                  ✅ Acesso imediato &nbsp;•&nbsp; 🔒 Pagamento 100% seguro via Kiwify
+                </p>
+              </div>
+            </div>
+
             {/* Banner Promocional de Lançamento */}
             <div className="promo-banner">
               <div className="promo-icon">⚠️</div>
@@ -268,46 +294,6 @@ const LandingPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
-            
-            {/* Checkout CTA Button (Topo) - Direct to Kiwify */}
-            <div className="checkout-cta-container checkout-cta-top">
-              <p className="checkout-cta-headline">
-                <span className="checkout-cta-headline-emoji">🎯</span>
-                Pronto para <strong>conquistar sua vaga de Trainee ROV</strong>?
-              </p>
-              <a
-                href="https://pay.kiwify.com.br/pkz4J3e"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="checkout-cta-button"
-                onClick={() => trackEvent('checkout_click', 'hero_top_cta')}
-              >
-                <Shield size={22} className="checkout-cta-icon" />
-                <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
-                <ArrowRight size={22} className="checkout-cta-arrow" />
-              </a>
-              <p className="checkout-cta-subtext">
-                ✅ Acesso imediato &nbsp;•&nbsp; 🔒 Pagamento 100% seguro via Kiwify
-              </p>
-            </div>
-            
-            {/* Checkout CTA Button - Direct to Kiwify */}
-            <div className="checkout-cta-container">
-              <a
-                href="https://pay.kiwify.com.br/pkz4J3e"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="checkout-cta-button"
-                onClick={() => trackEvent('checkout_click', 'hero_video_cta')}
-              >
-                <Shield size={22} className="checkout-cta-icon" />
-                <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
-                <ArrowRight size={22} className="checkout-cta-arrow" />
-              </a>
-              <p className="checkout-cta-subtext">
-                ✅ Acesso imediato &nbsp;•&nbsp; 🔒 Pagamento 100% seguro via Kiwify
-              </p>
             </div>
             
             <div className="hero-actions">
@@ -600,6 +586,29 @@ const LandingPage = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* Strategic Checkout CTA — after instructor credibility, before final CTA */}
+      <section className="strategic-cta-section">
+        <div className="container">
+          <div className="strategic-cta-wrapper">
+            <p className="strategic-cta-text">
+              Você já sabe o que vai aprender, conheceu o instrutor e viu os resultados reais.<br />
+              <strong>Agora é a sua vez de conquistar a sua vaga.</strong>
+            </p>
+            <a
+              href="https://pay.kiwify.com.br/pkz4J3e"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="checkout-cta-button"
+              onClick={() => trackEvent('checkout_click', 'strategic_mid_cta')}
+            >
+              <Shield size={22} className="checkout-cta-icon" />
+              <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
+              <ArrowRight size={22} className="checkout-cta-arrow" />
+            </a>
+          </div>
         </div>
       </section>
 
