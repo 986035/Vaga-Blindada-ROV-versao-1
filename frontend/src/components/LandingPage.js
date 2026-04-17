@@ -11,6 +11,7 @@ import LoadingSpinner from "./LoadingSpinner";
 const LandingPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [expandedModules, setExpandedModules] = useState({});
+  const [playingTestimonial, setPlayingTestimonial] = useState(null);
   const { courseData, isLoading, error } = useCourseInfo();
   
   // Kiwify checkout URL
@@ -42,23 +43,23 @@ const LandingPage = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Carlos",
+      name: "Lucas Barreto",
       role: "Aprovado como Trainee ROV",
-      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      videoUrl: "https://customer-assets.emergentagent.com/job_hello-app-1738/artifacts/wbfg4wel_IMG_6137.mp4",
       text: "Antes do Vaga Blindada, eu era ignorado em todos os processos seletivos de Trainee ROV. Depois de aplicar o método estratégico, consegui minha vaga em apenas 45 dias!"
     },
     {
       id: 2,
-      name: "Ana",
-      role: "Aprovada como Trainee ROV",
-      photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
-      text: "O método Vaga Blindada mudou completamente minha abordagem nos processos seletivos. Hoje trabalho embarcada e realizada profissionalmente!"
+      name: "Rafael Duarte",
+      role: "Aprovado como Trainee ROV",
+      videoUrl: "https://customer-assets.emergentagent.com/job_hello-app-1738/artifacts/sru7nzzb_Nicol%C3%A1s.mp4",
+      text: "O método Vaga Blindada mudou completamente minha abordagem nos processos seletivos. Hoje trabalho embarcado e realizado profissionalmente!"
     },
     {
       id: 3,
-      name: "Pedro",
-      role: "Aprovado como Trainee ROV",
-      photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+      name: "Bruna Albuquerque",
+      role: "Aprovada como Trainee ROV",
+      videoUrl: "https://customer-assets.emergentagent.com/job_hello-app-1738/artifacts/s7cywplx_Nat%C3%A1lia.mp4",
       text: "Tentei por 2 anos conseguir uma vaga offshore sem sucesso. Com o Vaga Blindada, em 2 meses recebi minha primeira proposta. O método realmente funciona!"
     }
   ];
@@ -267,32 +268,105 @@ const LandingPage = () => {
               </div>
             </div>
 
-            {/* Testimonials Section - Cards with Photos */}
+            {/* Testimonials Section - Video Cards */}
             <div className="testimonials-section">
               <h3 className="testimonials-title">
                 <Star size={24} className="text-yellow-400" />
                 Veja quem já conquistou sua vaga
               </h3>
               <div className="testimonials-grid">
-                {testimonials.map((testimonial) => (
-                  <div key={testimonial.id} className="testimonial-card-text">
-                    <div className="testimonial-photo-container">
-                      <img 
-                        src={testimonial.photo} 
-                        alt={`Foto de ${testimonial.name}`}
-                        className="testimonial-photo"
-                      />
-                      <div className="testimonial-quote-icon">"</div>
-                    </div>
-                    <div className="testimonial-content">
-                      <p className="testimonial-text">{testimonial.text}</p>
-                      <div className="testimonial-author">
-                        <h4 className="testimonial-name">{testimonial.name}</h4>
-                        <p className="testimonial-role">{testimonial.role}</p>
+                {testimonials.map((testimonial) => {
+                  const isPlaying = playingTestimonial === testimonial.id;
+                  return (
+                    <div key={testimonial.id} className="testimonial-card-text">
+                      <div className="testimonial-video-container">
+                        <video
+                          className="testimonial-video"
+                          src={testimonial.videoUrl}
+                          controls={isPlaying}
+                          muted={!isPlaying}
+                          playsInline
+                          preload="metadata"
+                          poster=""
+                          onLoadedMetadata={(e) => {
+                            // Jumps to 0.5s so the first frame shows the person (not a black frame)
+                            try {
+                              if (e.target.currentTime === 0) {
+                                e.target.currentTime = 0.5;
+                              }
+                            } catch (err) { /* noop */ }
+                          }}
+                          onClick={(e) => {
+                            if (!isPlaying) {
+                              e.preventDefault();
+                              // Pause all other testimonial videos
+                              document.querySelectorAll('video.testimonial-video').forEach((v) => {
+                                if (v !== e.target) {
+                                  try { v.pause(); v.muted = true; } catch (err) { /* noop */ }
+                                }
+                              });
+                              e.target.muted = false;
+                              e.target.currentTime = 0;
+                              const p = e.target.play();
+                              if (p && typeof p.then === 'function') {
+                                p.catch(() => { /* autoplay blocked */ });
+                              }
+                              setPlayingTestimonial(testimonial.id);
+                              trackEvent('testimonial_play', 'hero', { testimonial_id: testimonial.id });
+                            }
+                          }}
+                          onEnded={() => setPlayingTestimonial(null)}
+                          onPause={(e) => {
+                            // If user pauses via native control, reset state so overlay re-appears if they want to replay from start
+                            if (isPlaying && e.target.ended) {
+                              setPlayingTestimonial(null);
+                            }
+                          }}
+                        />
+                        {!isPlaying && (
+                          <button
+                            type="button"
+                            className="testimonial-video-overlay"
+                            aria-label={`Reproduzir depoimento de ${testimonial.name}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const videoEl = e.currentTarget.parentElement.querySelector('video.testimonial-video');
+                              if (videoEl) {
+                                // Pause others
+                                document.querySelectorAll('video.testimonial-video').forEach((v) => {
+                                  if (v !== videoEl) {
+                                    try { v.pause(); v.muted = true; } catch (err) { /* noop */ }
+                                  }
+                                });
+                                videoEl.muted = false;
+                                videoEl.currentTime = 0;
+                                const p = videoEl.play();
+                                if (p && typeof p.then === 'function') {
+                                  p.catch(() => { /* noop */ });
+                                }
+                                setPlayingTestimonial(testimonial.id);
+                                trackEvent('testimonial_play', 'hero', { testimonial_id: testimonial.id });
+                              }
+                            }}
+                          >
+                            <span className="testimonial-video-play-icon">
+                              <Play size={28} fill="currentColor" />
+                            </span>
+                            <span className="testimonial-video-play-label">Assistir depoimento</span>
+                          </button>
+                        )}
+                        <div className="testimonial-quote-icon">"</div>
+                      </div>
+                      <div className="testimonial-content">
+                        <p className="testimonial-text">{testimonial.text}</p>
+                        <div className="testimonial-author">
+                          <h4 className="testimonial-name">{testimonial.name}</h4>
+                          <p className="testimonial-role">{testimonial.role}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
             
