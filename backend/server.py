@@ -1,4 +1,5 @@
 from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -134,7 +135,7 @@ course_data = {
             "lessons": [
                 {"number": "B1", "title": "O que estudar para a Prova Técnica (Simulado)"},
                 {"number": "B2", "title": "Modelos de Currículo (Word) + Checklists em PDF"},
-                {"number": "B3", "title": "ROV English Kit — Inglês Técnico para o Offshore (PDF + Áudios)"}
+                {"number": "B3", "title": "ROV English Kit — Inglês Técnico para o Offshore (PDF)"}
             ]
         }
     ],
@@ -208,7 +209,7 @@ course_data = {
         },
         {
             "title": "ROV English Kit",
-            "description": "Inglês Técnico para o Offshore em PDF + áudios: glossário, frases prontas e situações reais (briefings, operações, manutenção e emergências) para você se comunicar com segurança, mesmo sem fluência."
+            "description": "Guia em PDF de Inglês Técnico para o Offshore: glossário EN/PT, frases prontas e situações reais (briefings, operações, manutenção e emergências) para você se comunicar com segurança, mesmo sem fluência."
         },
         {
             "title": "Atualizações Gratuitas",
@@ -310,6 +311,18 @@ async def track_event(event_data: dict):
         return {"success": True}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao rastrear evento: {str(e)}")
+
+@api_router.get("/bonus/rov-english-kit")
+async def download_rov_english_kit():
+    """Serve o PDF do bônus 'ROV English Kit' para download."""
+    pdf_path = "/app/bonus_content/rov_english_kit.pdf"
+    if not os.path.exists(pdf_path):
+        raise HTTPException(status_code=404, detail="PDF não encontrado. Regenere com: python3 /app/scripts/generate_rov_english_kit.py")
+    return FileResponse(
+        pdf_path,
+        media_type="application/pdf",
+        filename="ROV_English_Kit_Vaga_Blindada_ROV.pdf",
+    )
 
 # Include router
 app.include_router(api_router)
