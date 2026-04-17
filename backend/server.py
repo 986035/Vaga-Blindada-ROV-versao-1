@@ -322,7 +322,7 @@ async def download_rov_english_kit():
 @api_router.get("/bonus/rov-english-kit-cover")
 async def download_rov_english_kit_cover():
     """Serve a capa do 'ROV English Kit' para download."""
-    cover_path = "/app/bonus_content/rov_english_kit_cover.png"
+    cover_path = "/app/bonus_content/rov_english_kit_cover_v2.png"
     if not os.path.exists(cover_path):
         raise HTTPException(status_code=404, detail="Capa não encontrada.")
     return FileResponse(
