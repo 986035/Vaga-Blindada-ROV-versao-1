@@ -75,13 +75,16 @@ const LandingPage = () => {
     trackEvent('page_view', 'landing_page');
   }, [trackEvent]);
 
-  // YouTube IFrame API — prevents Chrome's 2x fast-forward at start by delaying playback
-  // until the video has buffered. We load the API script once and start playback
-  // ~1.5s after the player reports ready.
+  // YouTube IFrame API — prevents Chrome's fast-forward at start by delaying playback
+  // until the video has properly buffered, then forcing seek to 0 and playbackRate=1.
   useEffect(() => {
     let player;
     let playTimeout;
     let pollInterval;
+    let watchdogInterval;
+    let hasStartedPlaying = false;
+    const PLAY_DELAY_MS = 3500; // Wait 3.5s for buffer before starting
+    const MAX_EXPECTED_TIME_AT_START = 1.2; // If currentTime jumps beyond this right at start, seek back to 0
 
     const initPlayer = () => {
       const iframeEl = document.getElementById('hero-yt-player');
@@ -90,16 +93,60 @@ const LandingPage = () => {
         player = new window.YT.Player('hero-yt-player', {
           events: {
             onReady: (event) => {
+              try {
+                event.target.mute();
+                // Pre-seek to 0 to ensure buffer fills from beginning
+                if (event.target.seekTo) {
+                  event.target.seekTo(0, true);
+                }
+              } catch (err) { /* noop */ }
+
               // Allow YouTube to buffer initial frames before starting.
               // This avoids Chrome "fast-forwarding" through missed frames.
               playTimeout = setTimeout(() => {
                 try {
                   event.target.mute();
+                  // Re-seek one more time just before playing — forces Chrome to start at 0
+                  if (event.target.seekTo) {
+                    event.target.seekTo(0, true);
+                  }
+                  if (event.target.setPlaybackRate) {
+                    event.target.setPlaybackRate(1);
+                  }
                   event.target.playVideo();
+                  // Start a short watchdog that, for the first ~4 seconds of playback,
+                  // catches Chrome "fast-forwarding" and seeks back to 0.
+                  let watchdogStart = Date.now();
+                  let lastTime = 0;
+                  watchdogInterval = setInterval(() => {
+                    try {
+                      const t = event.target.getCurrentTime ? event.target.getCurrentTime() : 0;
+                      // If within the first 800ms of watchdog, and playback already jumped past 1.2s => seek back
+                      if (!hasStartedPlaying && t > MAX_EXPECTED_TIME_AT_START) {
+                        event.target.seekTo(0, true);
+                        if (event.target.setPlaybackRate) event.target.setPlaybackRate(1);
+                      } else if (t > 0.05) {
+                        hasStartedPlaying = true;
+                      }
+                      // Force playbackRate=1 throughout watchdog window
+                      if (event.target.getPlaybackRate && event.target.getPlaybackRate() !== 1) {
+                        event.target.setPlaybackRate(1);
+                      }
+                      lastTime = t;
+                      // Stop watchdog after 4 seconds
+                      if (Date.now() - watchdogStart > 4000) {
+                        clearInterval(watchdogInterval);
+                        watchdogInterval = null;
+                      }
+                    } catch (err) {
+                      clearInterval(watchdogInterval);
+                      watchdogInterval = null;
+                    }
+                  }, 200);
                 } catch (err) {
                   // silently ignore
                 }
-              }, 1500);
+              }, PLAY_DELAY_MS);
             },
             onStateChange: (event) => {
               // Safety: if playback rate got altered, force back to 1
@@ -141,6 +188,7 @@ const LandingPage = () => {
     return () => {
       if (playTimeout) clearTimeout(playTimeout);
       if (pollInterval) clearInterval(pollInterval);
+      if (watchdogInterval) clearInterval(watchdogInterval);
       if (player && typeof player.destroy === 'function') {
         try { player.destroy(); } catch (err) { /* noop */ }
       }
