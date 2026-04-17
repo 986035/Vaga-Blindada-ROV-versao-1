@@ -133,7 +133,8 @@ course_data = {
             "color": "gold",
             "lessons": [
                 {"number": "B1", "title": "O que estudar para a Prova Técnica (Simulado)"},
-                {"number": "B2", "title": "Modelos de Currículo (Word) + Checklists em PDF"}
+                {"number": "B2", "title": "Modelos de Currículo (Word) + Checklists em PDF"},
+                {"number": "B3", "title": "ROV English Kit — Inglês Técnico para o Offshore (PDF + Áudios)"}
             ]
         }
     ],
@@ -204,6 +205,10 @@ course_data = {
         {
             "title": "Simulado de Prova Técnica",
             "description": "Questões reais para você treinar antes do processo seletivo"
+        },
+        {
+            "title": "ROV English Kit",
+            "description": "Inglês Técnico para o Offshore em PDF + áudios: glossário, frases prontas e situações reais (briefings, operações, manutenção e emergências) para você se comunicar com segurança, mesmo sem fluência."
         },
         {
             "title": "Atualizações Gratuitas",
