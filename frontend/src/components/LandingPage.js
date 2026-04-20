@@ -52,14 +52,14 @@ const LandingPage = () => {
       id: 2,
       name: "Rafael Duarte",
       role: "Aprovado como Trainee ROV",
-      videoUrl: "https://customer-assets.emergentagent.com/job_hello-app-1738/artifacts/sru7nzzb_Nicol%C3%A1s.mp4",
+      videoUrl: "https://customer-assets.emergentagent.com/job_hello-world-9728/artifacts/uqu9wrpp_Rafael%20Duarte.mp4",
       text: "O método Vaga Blindada mudou completamente minha abordagem nos processos seletivos. Hoje trabalho embarcado e realizado profissionalmente!"
     },
     {
       id: 3,
       name: "Bruna Albuquerque",
       role: "Aprovada como Trainee ROV",
-      videoUrl: "https://customer-assets.emergentagent.com/job_hello-app-1738/artifacts/s7cywplx_Nat%C3%A1lia.mp4",
+      videoUrl: "https://customer-assets.emergentagent.com/job_hello-world-9728/artifacts/d57i71cp_Bruna%20Albuquerque.mp4",
       text: "Tentei por 2 anos conseguir uma vaga offshore sem sucesso. Com o Vaga Blindada, em 2 meses recebi minha primeira proposta. O método realmente funciona!"
     }
   ];
