@@ -303,13 +303,6 @@ const LandingPage = () => {
             </div>
             
             <div className="hero-actions">
-              <Button 
-                onClick={() => handlePurchase('hero')} 
-                className="btn-primary"
-              >
-                Entrar na Lista VIP
-                <ArrowRight size={16} className="ml-2" />
-              </Button>
               <Button onClick={handleLearnMore} variant="outline" className="btn-secondary">
                 {data.hero?.ctaSecondary || 'Conhecer o Método'}
               </Button>
