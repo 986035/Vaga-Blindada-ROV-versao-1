@@ -75,126 +75,6 @@ const LandingPage = () => {
     trackEvent('page_view', 'landing_page');
   }, [trackEvent]);
 
-  // YouTube IFrame API — prevents Chrome's fast-forward at start by delaying playback
-  // until the video has properly buffered, then forcing seek to 0 and playbackRate=1.
-  useEffect(() => {
-    let player;
-    let playTimeout;
-    let pollInterval;
-    let watchdogInterval;
-    let hasStartedPlaying = false;
-    const PLAY_DELAY_MS = 3500; // Wait 3.5s for buffer before starting
-    const MAX_EXPECTED_TIME_AT_START = 1.2; // If currentTime jumps beyond this right at start, seek back to 0
-
-    const initPlayer = () => {
-      const iframeEl = document.getElementById('hero-yt-player');
-      if (!iframeEl || !window.YT || !window.YT.Player) return false;
-      try {
-        player = new window.YT.Player('hero-yt-player', {
-          events: {
-            onReady: (event) => {
-              try {
-                event.target.mute();
-                // Pre-seek to 0 to ensure buffer fills from beginning
-                if (event.target.seekTo) {
-                  event.target.seekTo(0, true);
-                }
-              } catch (err) { /* noop */ }
-
-              // Allow YouTube to buffer initial frames before starting.
-              // This avoids Chrome "fast-forwarding" through missed frames.
-              playTimeout = setTimeout(() => {
-                try {
-                  event.target.mute();
-                  // Re-seek one more time just before playing — forces Chrome to start at 0
-                  if (event.target.seekTo) {
-                    event.target.seekTo(0, true);
-                  }
-                  if (event.target.setPlaybackRate) {
-                    event.target.setPlaybackRate(1);
-                  }
-                  event.target.playVideo();
-                  // Start a short watchdog that, for the first ~4 seconds of playback,
-                  // catches Chrome "fast-forwarding" and seeks back to 0.
-                  let watchdogStart = Date.now();
-                  let lastTime = 0;
-                  watchdogInterval = setInterval(() => {
-                    try {
-                      const t = event.target.getCurrentTime ? event.target.getCurrentTime() : 0;
-                      // If within the first 800ms of watchdog, and playback already jumped past 1.2s => seek back
-                      if (!hasStartedPlaying && t > MAX_EXPECTED_TIME_AT_START) {
-                        event.target.seekTo(0, true);
-                        if (event.target.setPlaybackRate) event.target.setPlaybackRate(1);
-                      } else if (t > 0.05) {
-                        hasStartedPlaying = true;
-                      }
-                      // Force playbackRate=1 throughout watchdog window
-                      if (event.target.getPlaybackRate && event.target.getPlaybackRate() !== 1) {
-                        event.target.setPlaybackRate(1);
-                      }
-                      lastTime = t;
-                      // Stop watchdog after 4 seconds
-                      if (Date.now() - watchdogStart > 4000) {
-                        clearInterval(watchdogInterval);
-                        watchdogInterval = null;
-                      }
-                    } catch (err) {
-                      clearInterval(watchdogInterval);
-                      watchdogInterval = null;
-                    }
-                  }, 200);
-                } catch (err) {
-                  // silently ignore
-                }
-              }, PLAY_DELAY_MS);
-            },
-            onStateChange: (event) => {
-              // Safety: if playback rate got altered, force back to 1
-              if (event.data === window.YT.PlayerState.PLAYING) {
-                try {
-                  if (event.target.getPlaybackRate && event.target.getPlaybackRate() !== 1) {
-                    event.target.setPlaybackRate(1);
-                  }
-                } catch (err) { /* noop */ }
-              }
-            }
-          }
-        });
-      } catch (err) {
-        // noop
-      }
-      return true;
-    };
-
-    // Inject API script if not present
-    if (!window.YT || !window.YT.Player) {
-      if (!document.getElementById('youtube-iframe-api-script')) {
-        const tag = document.createElement('script');
-        tag.id = 'youtube-iframe-api-script';
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.body.appendChild(tag);
-      }
-      // Poll until API is ready (handles race conditions with global callback)
-      pollInterval = setInterval(() => {
-        if (window.YT && window.YT.Player) {
-          clearInterval(pollInterval);
-          initPlayer();
-        }
-      }, 150);
-    } else {
-      initPlayer();
-    }
-
-    return () => {
-      if (playTimeout) clearTimeout(playTimeout);
-      if (pollInterval) clearInterval(pollInterval);
-      if (watchdogInterval) clearInterval(watchdogInterval);
-      if (player && typeof player.destroy === 'function') {
-        try { player.destroy(); } catch (err) { /* noop */ }
-      }
-    };
-  }, []);
-
   const handlePurchase = async (source = 'hero') => {
     try {
       await trackEvent('cta_click', source, { button: 'purchase' });
@@ -264,18 +144,22 @@ const LandingPage = () => {
               Descubra o passo a passo estratégico que realmente prepara técnicos para conquistar a vaga.
             </p>
 
-            {/* Video Section - Auto-play with buffer delay to prevent Chrome's 2x fast-forward */}
+            {/* Video Section - MP4 nativo com capa (poster) */}
             <div className="hero-video-container">
               <div className="video-player-wrapper">
-                <iframe
+                <video
                   id="hero-yt-player"
-                  src="https://www.youtube.com/embed/tjMt8jc2XoE?enablejsapi=1&rel=0&playsinline=1&mute=1&modestbranding=1"
-                  title="Vaga Blindada ROV - Apresentação"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
                   className="video-iframe"
-                ></iframe>
+                  src="https://customer-assets.emergentagent.com/job_hello-world-9728/artifacts/7awd41d7_Editado%20e%20Final.mp4"
+                  poster="https://customer-assets.emergentagent.com/job_hello-world-9728/artifacts/d67yfso0_Editado%20e%20Final-Cover.jpg"
+                  controls
+                  autoPlay
+                  muted
+                  playsInline
+                  preload="metadata"
+                >
+                  Seu navegador não suporta a reprodução de vídeo HTML5.
+                </video>
               </div>
             </div>
 
