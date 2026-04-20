@@ -66,7 +66,7 @@ Atualmente está com checkout simulado (mock). Para ativar:
 |---------|-----|
 | Site (www) | https://www.vagablindada.com.br |
 | Site (raiz) | https://vagablindada.com.br |
-| Preview Emergent | https://hello-app-1738.preview.emergentagent.com |
+| Preview Emergent | https://hello-world-9728.preview.emergentagent.com |
 | Frontend Render | https://vaga-blindada-rov-versao-1-frontend.onrender.com |
 | Backend Render | https://vaga-blindada-rov-versao-1-backend.onrender.com |
 | Vídeo YouTube | https://youtu.be/t2WO4HhINIE |
