@@ -45,7 +45,7 @@ const LandingPage = () => {
       id: 1,
       name: "Lucas Barreto",
       role: "Aprovado como Trainee ROV",
-      videoUrl: "https://customer-assets.emergentagent.com/job_hello-app-1738/artifacts/wbfg4wel_IMG_6137.mp4",
+      videoUrl: "https://customer-assets.emergentagent.com/job_hello-world-9728/artifacts/me4naltt_Lucas%20Barreto.mp4",
       text: "Antes do Vaga Blindada, eu era ignorado em todos os processos seletivos de Trainee ROV. Depois de aplicar o método estratégico, consegui minha vaga em apenas 45 dias!"
     },
     {
