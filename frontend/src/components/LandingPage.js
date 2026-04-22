@@ -137,11 +137,11 @@ const LandingPage = () => {
             </div>
             
             <h1 className="hero-title heading-hero">
-              Por que técnicos são eliminados no Processo de trainee de ROV — e o que as empresas realmente avaliam na hora de aprovar candidatos
+              Por que técnicos não são chamados para o Processo Seletivo de Trainee de ROV — e como fazer seu currículo passar pelo sistema que elimina a maioria antes mesmo da entrevista
             </h1>
             
             <p className="hero-subtitle body-large">
-              Um método prático para entender o processo seletivo, ajustar seu perfil e aumentar suas chances de aprovação — mesmo sem experiência offshore.
+              Um método prático para encontrar as vagas certas, montar um currículo estratégico e passar pela filtragem das empresas — mesmo sem experiência em ROV.
             </p>
 
             {/* Video Section - MP4 nativo com capa (poster) */}
