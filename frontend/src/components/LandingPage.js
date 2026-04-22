@@ -137,11 +137,11 @@ const LandingPage = () => {
             </div>
             
             <h1 className="hero-title heading-hero">
-              Pare de ser ignorado nos processos seletivos de Trainee ROV
+              Por que técnicos são eliminados no Processo de trainee de ROV — e o que as empresas realmente avaliam na hora de aprovar candidatos
             </h1>
             
             <p className="hero-subtitle body-large">
-              Descubra o passo a passo estratégico que realmente prepara técnicos para conquistar a vaga.
+              Um método prático para entender o processo seletivo, ajustar seu perfil e aumentar suas chances de aprovação — mesmo sem experiência offshore.
             </p>
 
             {/* Video Section - MP4 nativo com capa (poster) */}
@@ -160,6 +160,33 @@ const LandingPage = () => {
                 >
                   Seu navegador não suporta a reprodução de vídeo HTML5.
                 </video>
+              </div>
+            </div>
+
+            {/* Bloco de Identificação - logo abaixo do vídeo */}
+            <div className="pain-points-box">
+              <h3 className="pain-points-title">Se você está nessa situação:</h3>
+              <ul className="pain-points-list">
+                <li className="pain-point-item">
+                  <span className="pain-point-bullet">✗</span>
+                  <span>Já enviou currículo e não teve resposta</span>
+                </li>
+                <li className="pain-point-item">
+                  <span className="pain-point-bullet">✗</span>
+                  <span>Não sabe onde encontrar vagas reais de Trainee de ROV</span>
+                </li>
+                <li className="pain-point-item">
+                  <span className="pain-point-bullet">✗</span>
+                  <span>Não entende como funciona o processo seletivo</span>
+                </li>
+                <li className="pain-point-item">
+                  <span className="pain-point-bullet">✗</span>
+                  <span>Sente que está sempre um passo atrás</span>
+                </li>
+              </ul>
+              <div className="pain-points-cta">
+                <span className="pain-points-cta-arrow">👉</span>
+                <span className="pain-points-cta-text">Então esse método foi feito pra você.</span>
               </div>
             </div>
 
