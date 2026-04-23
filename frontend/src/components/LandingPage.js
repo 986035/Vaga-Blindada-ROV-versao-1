@@ -533,13 +533,24 @@ const LandingPage = () => {
       <section className="whatsapp-help-section">
         <div className="container">
           <div className="whatsapp-help-wrapper">
-            <div className="whatsapp-help-icon">💬</div>
+            <div className="whatsapp-help-icon">🎯</div>
             <h3 className="whatsapp-help-title">
-              Ainda tem dúvidas antes de entrar?
+              Pronto para garantir sua vaga?
             </h3>
             <p className="whatsapp-help-text">
-              Fala direto comigo no WhatsApp. Respondo suas perguntas sobre o curso, processo seletivo e o mercado de ROV.
+              Se ainda tiver alguma dúvida, fale direto comigo no WhatsApp. Respondo suas perguntas sobre o curso, processo seletivo e o mercado de ROV.
             </p>
+            <a
+              href="https://pay.kiwify.com.br/pkz4J3e"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="checkout-cta-button"
+              onClick={() => trackEvent('checkout_click', 'mid_help_cta')}
+            >
+              <Shield size={22} className="checkout-cta-icon" />
+              <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
+              <ArrowRight size={22} className="checkout-cta-arrow" />
+            </a>
             <a
               href="https://wa.me/5522988196922?text=Quero%20entender%20como%20entrar%20no%20ROV"
               target="_blank"
@@ -657,29 +668,6 @@ const LandingPage = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
-      </section>
-
-      {/* Strategic Checkout CTA — after instructor credibility, before final CTA */}
-      <section className="strategic-cta-section">
-        <div className="container">
-          <div className="strategic-cta-wrapper">
-            <p className="strategic-cta-text">
-              Você já sabe o que vai aprender, conheceu o instrutor e viu os resultados reais.<br />
-              <strong>Agora é a sua vez de conquistar a sua vaga.</strong>
-            </p>
-            <a
-              href="https://pay.kiwify.com.br/pkz4J3e"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="checkout-cta-button"
-              onClick={() => trackEvent('checkout_click', 'strategic_mid_cta')}
-            >
-              <Shield size={22} className="checkout-cta-icon" />
-              <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
-              <ArrowRight size={22} className="checkout-cta-arrow" />
-            </a>
-          </div>
         </div>
       </section>
 
