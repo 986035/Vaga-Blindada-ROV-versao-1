@@ -529,6 +529,31 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* WhatsApp Help Section — posicionado entre Target e Content */}
+      <section className="whatsapp-help-section">
+        <div className="container">
+          <div className="whatsapp-help-wrapper">
+            <div className="whatsapp-help-icon">💬</div>
+            <h3 className="whatsapp-help-title">
+              Ainda tem dúvidas antes de entrar?
+            </h3>
+            <p className="whatsapp-help-text">
+              Fala direto comigo no WhatsApp. Respondo suas perguntas sobre o curso, processo seletivo e o mercado de ROV.
+            </p>
+            <a
+              href="https://wa.me/5522988196922?text=Quero%20entender%20como%20entrar%20no%20ROV"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whatsapp-cta-button whatsapp-help-button"
+              onClick={() => trackEvent('whatsapp_click', 'help_section')}
+            >
+              <MessageCircle size={20} className="whatsapp-cta-icon" />
+              <span className="whatsapp-cta-text">Tirar dúvidas no WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Course Content Section with Background */}
       <section id="content" className="content-section section-with-bg-alt">
         <div className="section-bg-overlay"></div>
@@ -653,16 +678,6 @@ const LandingPage = () => {
               <Shield size={22} className="checkout-cta-icon" />
               <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
               <ArrowRight size={22} className="checkout-cta-arrow" />
-            </a>
-            <a
-              href="https://wa.me/5522988196922?text=Quero%20entender%20como%20entrar%20no%20ROV"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsapp-cta-button"
-              onClick={() => trackEvent('whatsapp_click', 'strategic_mid_cta')}
-            >
-              <MessageCircle size={20} className="whatsapp-cta-icon" />
-              <span className="whatsapp-cta-text">Tirar dúvidas no WhatsApp</span>
             </a>
           </div>
         </div>
