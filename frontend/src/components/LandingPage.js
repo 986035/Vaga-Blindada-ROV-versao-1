@@ -221,6 +221,16 @@ const LandingPage = () => {
                   <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
                   <ArrowRight size={22} className="checkout-cta-arrow" />
                 </a>
+                <a
+                  href="https://wa.me/5522988196922?text=Quero%20entender%20como%20entrar%20no%20ROV"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="whatsapp-cta-button"
+                  onClick={() => trackEvent('whatsapp_click', 'hero_box_cta')}
+                >
+                  <MessageCircle size={20} className="whatsapp-cta-icon" />
+                  <span className="whatsapp-cta-text">Tirar dúvidas no WhatsApp</span>
+                </a>
                 <p className="hero-cta-safety">
                   ✅ Acesso imediato &nbsp;•&nbsp; 🔒 Pagamento 100% seguro via Kiwify
                 </p>
@@ -465,6 +475,16 @@ const LandingPage = () => {
               Garantir Minha Vaga Agora
               <ArrowRight size={18} className="ml-2" />
             </Button>
+            <a
+              href="https://wa.me/5522988196922?text=Quero%20entender%20como%20entrar%20no%20ROV"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whatsapp-cta-button"
+              onClick={() => trackEvent('whatsapp_click', 'modules_cta')}
+            >
+              <MessageCircle size={20} className="whatsapp-cta-icon" />
+              <span className="whatsapp-cta-text">Tirar dúvidas no WhatsApp</span>
+            </a>
             <p className="modules-cta-subtitle">Acesso imediato a todos os 5 módulos + bônus</p>
           </div>
         </div>
@@ -634,6 +654,16 @@ const LandingPage = () => {
               <span className="checkout-cta-text">QUERO GARANTIR A MINHA VAGA</span>
               <ArrowRight size={22} className="checkout-cta-arrow" />
             </a>
+            <a
+              href="https://wa.me/5522988196922?text=Quero%20entender%20como%20entrar%20no%20ROV"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whatsapp-cta-button"
+              onClick={() => trackEvent('whatsapp_click', 'strategic_mid_cta')}
+            >
+              <MessageCircle size={20} className="whatsapp-cta-icon" />
+              <span className="whatsapp-cta-text">Tirar dúvidas no WhatsApp</span>
+            </a>
           </div>
         </div>
       </section>
@@ -664,6 +694,17 @@ const LandingPage = () => {
                 Garantir Minha Vaga Agora
                 <ArrowRight size={20} className="ml-2" />
               </Button>
+              <a
+                href="https://wa.me/5522988196922?text=Quero%20entender%20como%20entrar%20no%20ROV"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whatsapp-cta-button"
+                onClick={() => trackEvent('whatsapp_click', 'cta_final')}
+                style={{ marginLeft: 'auto', marginRight: 'auto', display: 'flex' }}
+              >
+                <MessageCircle size={20} className="whatsapp-cta-icon" />
+                <span className="whatsapp-cta-text">Tirar dúvidas no WhatsApp</span>
+              </a>
             </CardContent>
           </Card>
         </div>
