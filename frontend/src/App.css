@@ -666,6 +666,79 @@ body {
   }
 }
 
+/* QI Answer Box - "Precisa de indicação (QI) para entrar no ROV?" */
+.qi-answer-box {
+  max-width: 700px;
+  margin: 2rem auto 1.25rem;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.55) 0%, rgba(15, 23, 42, 0.7) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-left: 4px solid #2ecc71;
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.qi-answer-question {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.qi-answer-no {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #2ecc71;
+  margin: 0 0 14px 0;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.qi-answer-text {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #cbd5e1;
+  margin: 0 0 14px 0;
+  line-height: 1.55;
+}
+
+.qi-answer-highlight {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 767px) {
+  .qi-answer-box {
+    padding: 20px 18px;
+    margin: 1.5rem 1rem 1rem;
+    border-radius: 12px;
+  }
+
+  .qi-answer-question {
+    font-size: 1rem;
+  }
+
+  .qi-answer-no {
+    font-size: 1.4rem;
+  }
+
+  .qi-answer-text {
+    font-size: 0.95rem;
+  }
+
+  .qi-answer-highlight {
+    font-size: 1rem;
+  }
+}
+
 /* Pain Points Box - "Se você está nessa situação:" */
 .pain-points-box {
   max-width: 700px;

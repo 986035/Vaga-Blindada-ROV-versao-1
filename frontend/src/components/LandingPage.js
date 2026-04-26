@@ -163,6 +163,21 @@ const LandingPage = () => {
               </div>
             </div>
 
+            {/* Bloco "Resposta Direta" sobre QI - logo abaixo do vídeo */}
+            <div className="qi-answer-box">
+              <p className="qi-answer-question">
+                Precisa de indicação (QI) para entrar no ROV?
+              </p>
+              <p className="qi-answer-no">Não.</p>
+              <p className="qi-answer-text">
+                O que realmente faz diferença é entender o processo seletivo
+                e se posicionar da forma correta.
+              </p>
+              <p className="qi-answer-highlight">
+                É exatamente isso que você vai aprender aqui.
+              </p>
+            </div>
+
             {/* Bloco de Identificação - logo abaixo do vídeo */}
             <div className="pain-points-box">
               <h3 className="pain-points-title">Se você está nessa situação:</h3>
