@@ -1990,6 +1990,33 @@ body {
   gap: 0.5rem;
 }
 
+/* Ícone do WhatsApp clicável no footer */
+.whatsapp-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.35);
+  cursor: pointer;
+}
+
+.whatsapp-icon-link:hover {
+  transform: scale(1.08);
+  background: #1ebe5d;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-icon-link:focus-visible {
+  outline: 2px solid #25D366;
+  outline-offset: 3px;
+}
+
 .footer-divider {
   width: 100%;
   height: 1px;

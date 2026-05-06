@@ -37,12 +37,11 @@ const Footer = () => {
                 href="https://wa.me/5522988196922"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="contact-item"
-                style={{ color: '#25D366', textDecoration: 'none' }}
+                className="contact-item whatsapp-icon-link"
                 aria-label="Fale conosco no WhatsApp"
+                title="Fale conosco no WhatsApp"
               >
-                <WhatsAppIcon size={18} />
-                <span className="body-small">(22) 98819-6922</span>
+                <WhatsAppIcon size={28} />
               </a>
               <div className="contact-item">
                 <Clock size={16} />
