@@ -13,7 +13,7 @@ import sys
 from datetime import datetime
 
 # Backend URL from frontend/.env
-BACKEND_URL = "https://cache-bug-fix-1.preview.emergentagent.com"
+BACKEND_URL = "https://site-status-22.preview.emergentagent.com"
 API_BASE = f"{BACKEND_URL}/api"
 
 def test_root_endpoint():
