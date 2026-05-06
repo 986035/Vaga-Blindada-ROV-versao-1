@@ -151,16 +151,28 @@ frontend:
     file: "frontend/src/components/LandingPage.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: true
           agent: "main"
           comment: "handlePurchase now checks for checkout_url from API or kiwifyCheckoutUrl, falls back to Telegram"
 
+  - task: "Footer WhatsApp contact link with circular green icon"
+    implemented: true
+    working: true
+    file: "frontend/src/components/Footer.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ VERIFIED: Footer .footer-contact section displays correctly with all required elements: 'VAGA BLINDADA ROV' title, course description, email (contato@vagablindadarov.com), circular green WhatsApp icon (rgb(37, 211, 102)) with SVG, text 'Fale conosco no WhatsApp' visible next to icon, link href correct (https://wa.me/5522988196922), business hours (9h às 18h), NO phone number visible. All validations PASSED."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 1
+  test_sequence: 2
   run_ui: false
 
 test_plan:
@@ -179,3 +191,5 @@ agent_communication:
       message: "✅ BACKEND TESTING COMPLETE: All API endpoints working correctly. GET /api/course/info verified with exact structure requirements (5 modules, 4 stats, 6 benefits, checkout_url, sections). POST /api/leads/capture and GET /api/ also functioning properly. Created comprehensive backend_test.py for future testing. No critical issues found."
     - agent: "main"
       message: "Replaced hero YouTube iframe (video ID tjMt8jc2XoE) with native HTML5 <video> tag using user-provided MP4 (Editado e Final.mp4) + cover image (Editado e Final-Cover.jpg) as poster. Removed the entire YouTube IFrame API useEffect (~120 lines) since it's no longer needed. Updated .video-iframe CSS with object-fit: contain + black background to handle portrait video inside 16:9 wrapper cleanly. Verified visually via screenshot — MP4 loads and plays correctly with autoplay+muted+playsInline+controls attributes."
+    - agent: "testing"
+      message: "✅ FOOTER WHATSAPP VALIDATION COMPLETE: Performed comprehensive visual validation of footer .footer-contact section. All 10 verification checks PASSED: (1) Title 'VAGA BLINDADA ROV' correct, (2) Course description present, (3) Email 'contato@vagablindadarov.com' with icon, (4) WhatsApp link element found with correct href (https://wa.me/5522988196922), (5) Circular green icon (rgb(37, 211, 102) = #25D366) with WhatsApp SVG confirmed, (6) Text 'Fale conosco no WhatsApp' visible next to icon, (7) Business hours 'Atendimento: 9h às 18h' present, (8) NO phone number patterns like '(11) 99999-9999' found, (9) Confirmed WhatsApp SVG icon (path starts with M17.472), not traditional phone icon, (10) Link is fully clickable as one element. Screenshots saved: footer_contact_section.png and full_footer.png. Cache bypass used (?nocache=timestamp). All requirements met."

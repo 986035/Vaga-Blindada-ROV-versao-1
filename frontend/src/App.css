@@ -1990,7 +1990,49 @@ body {
   gap: 0.5rem;
 }
 
-/* Ícone do WhatsApp clicável no footer */
+/* Link "Fale conosco no WhatsApp" no footer */
+.whatsapp-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.whatsapp-contact-link:hover {
+  color: #25D366;
+}
+
+.whatsapp-contact-link:hover .whatsapp-icon-circle {
+  transform: scale(1.08);
+  background: #1ebe5d;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #ffffff;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.35);
+}
+
+.whatsapp-contact-link:focus-visible {
+  outline: 2px solid #25D366;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Ícone do WhatsApp clicável no footer (versão só ícone - legado) */
 .whatsapp-icon-link {
   display: inline-flex;
   align-items: center;
